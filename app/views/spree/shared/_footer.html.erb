@@ -1,0 +1,33 @@
+<footer>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-3 col-sm-6 col-xs-12 footer-column">
+        <div class="footer-header">Shop</div>
+        <%= link_to 'By Bird', products_path %>
+        <%= link_to 'By Brand', products_path %>
+        <%= link_to 'Search', products_path %>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12 footer-column">
+        <div class="footer-header">Links</div>
+        <%= link_to 'FAQ', '/faq' %>
+        <%= link_to 'About', '/about' %>
+        <%= link_to 'Talk To Us', '/talk_to_us' %>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12 footer-column">
+        <div class="footer-header">Account</div>
+        <%= link_to 'Login', login_path %>
+        <%= link_to 'Signup', signup_path %>
+        <%= link_to 'Forgot Password', login_path %>
+      </div>
+      <div class="col-md-3 col-sm-6 col-xs-12 footer-column">
+        <div class="footer-header">Contact</div>
+        <%= mail_to 'info@seedfactory.org' %>
+        <a>1.800.635.9259</a>
+        <a>4319 Jessup Road Ceres, CA 95307</a>
+      </div>
+    </div>
+    <div class="footer-copyright">
+      &copy; Copyright 2015 Seed Factory Inc.
+    </div>
+  </div>
+</footer>

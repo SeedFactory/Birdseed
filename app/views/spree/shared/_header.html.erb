@@ -1,0 +1,15 @@
+<header class="birdseed-header">
+  <h1 class="birdseed-logo">
+    <%= link_to :root do %>
+      <%= image_tag 'logo-white.png', class: 'birdseed-logo-white' %>
+      <%= image_tag 'logo-black.png', class: 'birdseed-logo-black' %>
+    <% end %>
+  </h1>
+  <nav class="birdseed-nav">
+    <%= link_to 'Shop', products_path %>
+    <%= link_to 'FAQ', '/faq' %>
+    <%= link_to 'About', '/about' %>
+    <%= link_to 'Talk To Us', '/talk_to_us' %>
+    <%= link_to 'Login', login_path %>
+  </nav>
+</header>

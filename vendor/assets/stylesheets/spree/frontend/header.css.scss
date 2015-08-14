@@ -1,0 +1,57 @@
+@import 'bootstrap/variables';
+
+.birdseed-header {
+  width: 100%;
+  position: absolute;
+  padding: 50px;
+  transition: 0.15s;
+}
+
+@media (max-width: $screen-xs-max) {
+  .birdseed-header {
+    padding: 30px 20px;
+  }
+}
+
+.birdseed-logo {
+  position: relative;
+  top: -3px;
+  margin: 0 0 0 15px;
+  float: left;
+}
+
+.birdseed-logo img {
+  width: 150px;
+  position: absolute;
+  transition: 0.15s;
+}
+
+.birdseed-logo-black {
+  opacity: 0;
+}
+
+.birdseed-nav {
+  float: right;
+}
+
+.birdseed-nav a {
+  padding: 15px;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 400;
+  font-size: 15px;
+  text-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  transition: 0.15s;
+}
+
+@media (max-width: $screen-xs-max) {
+  .birdseed-nav a {
+    display: none;
+  }
+}
+
+.birdseed-nav a:hover {
+  text-decoration: none;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.65);
+}

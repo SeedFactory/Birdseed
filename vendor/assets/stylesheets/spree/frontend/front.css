@@ -1,0 +1,23 @@
+footer {
+  padding: 50px;
+  background: #FCFCFC;
+}
+
+footer a {
+  margin-bottom: 3px;
+  display: block;
+  color: black;
+}
+
+.footer-column {
+  margin-bottom: 30px;
+}
+
+.footer-header, .footer-copyright {
+  margin-bottom: 8px;
+  color: #AAA;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
