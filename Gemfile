@@ -43,10 +43,12 @@ group :development, :test do
   gem 'web-console', '~> 2.0'
 end
 
-gem 'rails_12factor', group: :production
+group :production do
+  gem 'rails_12factor'
+  gem 'aws-sdk', '<2.0' # http://stackoverflow.com/a/28376678
+end
 
 gem 'spree', '3.0.3'
 gem 'spree_gateway', github: 'spree/spree_gateway', branch: '3-0-stable'
 gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '3-0-stable'
 
-gem 'aws-sdk'
