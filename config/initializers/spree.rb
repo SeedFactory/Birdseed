@@ -17,6 +17,8 @@ end
 
 Spree.user_class = "Spree::User"
 
-Rails.application.config.paperclip_defaults.each do |key, value|
-  Spree::Image.attachment_definitions[:attachment][key.to_sym] = value
+if Rails.application.config.respond_to?(:paperclip_defaults)
+  Rails.application.config.paperclip_defaults.each do |key, value|
+    Spree::Image.attachment_definitions[:attachment][key.to_sym] = value
+  end
 end
