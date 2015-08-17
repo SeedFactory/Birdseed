@@ -89,4 +89,8 @@ Rails.application.configure do
     path: '/:class/:id/:style/:basename.:extension'
   }
 
+  config.paperclip_defaults.each do |key, value|
+    Spree::Image.attachment_definitions[:attachment][key.to_sym] = value
+  end
+
 end
