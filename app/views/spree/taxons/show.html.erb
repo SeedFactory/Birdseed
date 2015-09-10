@@ -1,0 +1,36 @@
+<div class="shop-banner">
+  <h1>Shop</h1>
+</div>
+<div class="shop-nav">
+  <%= link_to 'Specials', Rails.application.routes.url_helpers.shop_path, class: 'shop-nav-left' %>
+  <%= link_to 'Brands', Rails.application.routes.url_helpers.shop_taxons_path(id: 'brands'), class: 'shop-nav-left' %>
+  <%= link_to 'Birds', Rails.application.routes.url_helpers.shop_taxons_path(id: 'birds'), class: 'shop-nav-left' %>
+  <%= link_to 'Search', products_path, class: 'shop-nav-left' %>
+  <%= link_to products_path, class: 'shop-nav-right' do %>
+    <i class="fa fa-shopping-cart"></i>
+    View Cart
+  <% end %>
+</div>
+<div class="shop-products">
+  <div class="container-fluid">
+    <% if @products.any? %>
+      <div class="shop-products-list">
+        <% @products.each do |product| %>
+          <div class="shop-product">
+            <div class="shop-product-name">
+              <%= truncate(product.name, length: 50) %>
+            </div>
+            <div class="shop-product-price">
+              <%= display_price(product) %>
+            </div>
+            <%= small_image(product) %>
+          </div>
+        <% end %>
+      </div>
+    <% else %>
+      <div class="shop-products-empty">
+        No products found
+      </div>
+    <% end %>
+  </div>
+</div>

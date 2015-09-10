@@ -1,0 +1,6 @@
+<%= render layout: 'shop/shop' do %>
+  <%= form_tag app_url_helpers.shop_search_path, method: 'GET', enforce_utf8: false, class: 'shop-search-form' do %>
+    <%= text_field_tag 'query', @query, placeholder: 'Search...', autofocus: true %>
+    <%= submit_tag 'Search', name: nil %>
+  <% end %>
+<% end %>

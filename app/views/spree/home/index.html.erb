@@ -1,6 +1,7 @@
+<% @body_class = 'birdseed-header-inverse' %>
 <div class="home-banner">
   <h1>Welcome to Birdseed.com</h1>
-  <a href="/products">Shop</a>
+  <%= link_to 'Shop', Rails.application.routes.url_helpers.shop_path %>
 </div>
 <div class="featured">
   <%= link_to '/', class: 'featured-item' do %>

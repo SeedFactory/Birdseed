@@ -1,0 +1,271 @@
+$shop-nav-height: 65px;
+$orange: #FF780F;
+
+.shop-banner {
+  height: 40vh;
+  background: image-url("banners/blue_feathers.jpg") top center;
+  background-size: cover;
+  text-align: center;
+}
+
+.shop-banner h1 {
+  top: 15%;
+}
+
+.shop-nav {
+  height: $shop-nav-height;
+  padding: 0 45px;
+  margin-top: -$shop-nav-height;
+  background: rgba(255, 255, 255, 0.8);
+}
+
+.shop-nav a {
+  position: relative;
+  padding: 15px 20px;
+  text-transform: uppercase;
+  line-height: $shop-nav-height - 30px;
+  font-weight: 500;
+  color: black;
+  letter-spacing: 1px;
+  text-decoration: none;
+  transition: 0.15s;
+
+  &:hover, &.active {
+    color: $orange;
+  }
+  &.active:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -8px;
+    content: '';
+    border: 8px solid transparent;
+    border-bottom-color: white;
+  }
+}
+
+.shop-nav-filter {
+  font-size: 16px;
+  float: left;
+}
+
+.shop-nav-cart {
+  font-size: 14px;
+  float: right;
+}
+
+.shop-nav-cart-icon {
+  font-size: 18px;
+  position: relative;
+  top: 3px;
+}
+
+.shop-nav-cart-count {
+  $shop-nav-cart-count-size: 20px;
+
+  width: $shop-nav-cart-count-size;
+  height: $shop-nav-cart-count-size;
+  margin-left: -13px;
+  position: relative;
+  top: -10px;
+  display: inline-block;
+  line-height: $shop-nav-cart-count-size - 1;
+  border-radius: $shop-nav-cart-count-size / 2;
+  background: $orange;
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  transition: inherit;
+  z-index: 1;
+
+  .shop-nav-cart.active &, .shop-nav-cart:hover & {
+    background: white;
+    color: $orange;
+  }
+}
+
+.shop-search-form {
+  padding: 30px 0;
+  text-align: center;
+}
+
+.shop-nav-filters input {
+  border-radius: 3px;
+  font-size: 16px;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.shop-nav-filters input[type="text"] {
+  width: 35%;
+  padding: 10px;
+  border: 1px #CCC solid;
+}
+
+.shop-nav-filters input[type="submit"] {
+  margin-left: 10px;
+  padding: 11px 20px;
+  border: 0;
+  background: $orange;
+  color: white;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+
+  &:hover {
+    background: lighten($orange, 5%);
+  }
+  &:active {
+    background: darken($orange, 5%);
+  }
+}
+
+.shop-nav-taxons {
+  position: relative;
+}
+
+.shop-nav-taxons-scroller {
+  padding: 30px 60px;
+  white-space: nowrap;
+  overflow-x: scroll;
+  font-size: 0;
+  -webkit-overflow-scrolling: touch;
+}
+
+.shop-nav-taxons-fade {
+  width: 65px;
+  height: 167px;
+  position: absolute;
+  top: 30px;
+  right: 0;
+  background: linear-gradient(to right, transparent, white);
+}
+
+.shop-nav-taxon {
+  width: 100px;
+  height: 167px;
+  margin: 0 5px;
+  position: relative;
+  display: inline-block;
+  background: #CCC;
+  color: white;
+  font-weight: 500;
+  font-size: 16px;
+  text-shadow: 0 1px 1px rgba(black, 0.35);
+  white-space: normal;
+
+  &.active {
+    height: 170px;
+    border-bottom: 3px solid $orange;
+  }
+
+  &.active:after {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    margin-left: -8px;
+    content: '';
+    border: 8px solid transparent;
+    border-bottom-color: $orange;
+  }
+}
+
+.shop-nav-taxon img {
+  width: 100%;
+  height: 100%;
+}
+
+.shop-nav-taxon-name {
+  padding: 5px 10px;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+
+.shop-products {
+  min-height: 60vh;
+}
+
+.shop-products-list {
+  padding: 0 65px;
+}
+
+.shop-product {
+  float: left;
+  color: black;
+
+  &:hover {
+    text-decoration: none;
+    color: black;
+  }
+}
+
+.shop-product-name {
+  font-size: 18px;
+}
+
+.shop-product-price {
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.cart {
+  padding: 0 65px;
+}
+
+.cart-header {
+  width: 100%;
+  padding: 40px 0;
+  float: left;
+}
+
+.cart-header h1 {
+  margin: 0;
+  font-size: 42px;
+  font-weight: 300;
+  float: left;
+}
+
+.cart-header input {
+  float: right;
+}
+
+.cart-items {
+  width: 100%;
+}
+
+.cart-items th {
+  color: #888;
+  text-transform: uppercase;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-size: 12px;
+}
+
+.cart-items th, .cart-items td {
+  border-bottom: 1px #DDD solid;
+}
+
+.cart-items th {
+  padding-bottom: 10px;
+}
+
+.cart-items td {
+  padding: 20px 0;
+  font-size: 18px;
+}
+
+.cart-items td a {
+  color: black;
+}
+
+.cart-items-numeric {
+  text-align: right;
+}
+
+.cart-total td {
+  border-bottom: 0;
+  font-size: 21px;
+}

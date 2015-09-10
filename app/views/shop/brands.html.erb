@@ -1,0 +1,12 @@
+<%= render layout: 'shop/shop' do %>
+  <div class="shop-nav-taxons">
+    <div class="shop-nav-taxons-scroller">
+      <% @brands.each do |brand| %>
+        <%= active_link_to app_url_helpers.shop_brands_path(brand: brand.name.to_url), class: 'shop-nav-taxon' do %>
+          <%= image_tag brand.icon(:normal_2x), alt: brand.name %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="shop-nav-taxons-fade"></div>
+  </div>
+<% end %>

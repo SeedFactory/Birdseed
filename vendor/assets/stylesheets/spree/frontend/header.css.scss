@@ -2,9 +2,7 @@
 
 .birdseed-header {
   width: 100%;
-  position: absolute;
   padding: 50px;
-  transition: 0.15s;
 }
 
 @media (max-width: $screen-xs-max) {
@@ -23,11 +21,26 @@
 .birdseed-logo img {
   width: 150px;
   position: absolute;
-  transition: 0.15s;
 }
 
-.birdseed-logo-black {
-  opacity: 0;
+.birdseed-logo-white {
+  display: none;
+}
+
+.birdseed-header-inverse {
+  .birdseed-logo-white {
+    display: block;
+  }
+  .birdseed-logo-black {
+    display: none;
+  }
+  .birdseed-header {
+    position: absolute;
+  }
+  .birdseed-nav a {
+    color: white;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
+  }
 }
 
 .birdseed-nav {
@@ -36,12 +49,11 @@
 
 .birdseed-nav a {
   padding: 15px;
-  color: white;
+  color: black;
   text-transform: uppercase;
   letter-spacing: 2px;
   font-weight: 400;
   font-size: 15px;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.75);
   transition: 0.15s;
 }
 

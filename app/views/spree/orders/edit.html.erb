@@ -1,0 +1,36 @@
+<%= render layout: 'shop/shop' do %>
+  <% if @order.line_items.empty? %>
+    <div class="cart-empty">
+      <h1>Your cart is empty</h1>
+      <%= link_to 'Continue Shopping', app_url_helpers.shop_path %>
+    </div>
+  <% else %>
+    <%= form_for @order, url: update_cart_path, html: { class: 'cart' } do |form| %>
+      <div class="cart-header">
+        <h1>Your Cart</h1>
+        <%= form.submit 'Checkout', name: 'checkout' %>
+      </div>
+      <table class="cart-items">
+        <tr>
+          <th>Product</th>
+          <th class="cart-items-numeric">Quantity</th>
+          <th class="cart-items-numeric">Total</th>
+        </tr>
+        <% @order.line_items.each do |item| %>
+          <%= form.fields_for :line_items, item do |item_form| %>
+            <tr>
+              <td><%= link_to item.name, item.variant.product %></td>
+              <td class="cart-items-numeric"><%= item_form.select :quantity, 0..50 %></td>
+              <td class="cart-items-numeric"><%= item.display_amount.to_html %></td>
+            </tr>
+          <% end %>
+        <% end %>
+        <tr class="cart-total">
+          <td colspan="3" class="cart-items-numeric">
+            <%= @order.display_total %>
+          </td>
+        </tr>
+      </table>
+    <% end %>
+  <% end %>
+<% end %>
