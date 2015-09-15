@@ -1,14 +1,3 @@
 <%= render layout: 'shop/shop' do %>
-  <div class="shop-nav-taxons">
-    <div class="shop-nav-taxons-scroller">
-      <% @birds.each do |bird| %>
-        <%= active_link_to app_url_helpers.shop_birds_path(bird: bird.name.to_url), class: 'shop-nav-taxon' do %>
-          <div class="shop-nav-taxon-name">
-            <%= bird.name %>
-          </div>
-        <% end %>
-      <% end %>
-    </div>
-    <div class="shop-nav-taxons-fade"></div>
-  </div>
+  <%= render 'shop/taxons', taxons: @birds, taxon: @bird, name: true %>
 <% end %>

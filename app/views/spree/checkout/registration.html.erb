@@ -1,0 +1,27 @@
+<% @body_class = 'birdseed-header-inverse' %>
+<div class="checkout-banner">
+  <h1>Checkout</h1>
+</div>
+<%= render 'nav', { states: @order.checkout_steps } %>
+<div class="checkout">
+  <div class="checkout-register">
+    <h1>Get Started</h1>
+    <%= form_for @user, as: :spree_user, url: update_checkout_registration_path, method: :put do |form| %>
+      <%= hidden_field :spree_user, :previous_email, value: @user.email %>
+      <%= form_group form, :email %>
+      <% if valid_email? %>
+        <div class="alert alert-info">
+          <% if @user.persisted? %>
+            It looks like you've been here before!
+            Please enter your password to continue.
+          <% else %>
+            It looks like you're new here, welcome!
+            Enter a password to create an account or continue as a guest.
+          <% end %>
+        </div>
+        <%= form_group form, :password %>
+      <% end %>
+      <%= form.submit 'Continue' %>
+    <% end %>
+  </div>
+</div>

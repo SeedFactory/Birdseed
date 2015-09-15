@@ -13,11 +13,12 @@ Spree.config do |config|
   # Example:
   # Uncomment to stop tracking inventory levels in the application
   # config.track_inventory_levels = false
+  config.admin_interface_logo = 'logo-white.png'
 end
 
 Spree.user_class = "Spree::User"
 
-paperclip_defaults = if Rails.env.production?
+paperclip_options = if Rails.env.production?
   {
     storage: :s3,
     s3_credentials: {
@@ -32,16 +33,11 @@ paperclip_defaults = if Rails.env.production?
 else
   {
     path: ':rails_root/public:url',
-    url: '/spree/:class/:id/:style.:extension'
+    url: '/:class/:id/:style.:extension'
   }
 end
 
-paperclip_defaults.each do |key, value|
-  Spree::Image.attachment_definitions[:attachment][key.to_sym] = value
-  Spree::Taxon.attachment_definitions[:icon][key.to_sym] = value
-end
-
-Spree::Taxon.attachment_definitions[:icon].merge!(
-  styles: { normal: '100x167>', normal_2x: '200x333>' },
-  default_style: :normal
-)
+Spree::Image.attachment_definitions[:attachment].merge!(paperclip_options)
+Spree::Taxon.attachment_definitions[:icon].merge!(paperclip_options)
+  .merge!(styles: { normal: '100x167>', normal_2x: '200x333>' },
+    default_style: :normal)

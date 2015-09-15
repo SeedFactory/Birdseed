@@ -1,20 +1,24 @@
 class ShopController < Spree::StoreController
 
   def index
-    load_products_for(taxon: 'specials')
+    load_products_for(taxon: taxon_for('specials'))
   end
 
   def birds
-    @birds = Spree::Taxon.friendly.find('birds').children
     if @bird = params[:bird]
-      load_products_for(taxon: "birds/#{@bird}")
+      @bird = taxon_for("birds/#{@bird}")
+      load_products_for(taxon: @bird)
+    else
+      @birds = taxon_for('birds').children
     end
   end
 
   def brands
-    @brands = Spree::Taxon.friendly.find('brands').children
     if @brand = params[:brand]
-      load_products_for(taxon: "brands/#{@brand}")
+      @brand = taxon_for("brands/#{@brand}")
+      load_products_for(taxon: @brand)
+    else
+      @brands = taxon_for('brands').children
     end
   end
 
@@ -26,9 +30,13 @@ class ShopController < Spree::StoreController
 
   private
 
+  def taxon_for permalink
+    Spree::Taxon.friendly.find(permalink)
+  end
+
   def load_products_for taxon: nil, query: nil
     searcher_params = params.merge(include_images: true)
-    searcher_params.merge!(taxon: Spree::Taxon.friendly.find(taxon).id) if taxon
+    searcher_params.merge!(taxon: taxon.id) if taxon
     searcher_params.merge!(keywords: query) if query
     searcher = build_searcher(searcher_params)
     @products = searcher.retrieve_products

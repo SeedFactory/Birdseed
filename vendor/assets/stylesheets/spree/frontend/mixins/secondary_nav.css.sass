@@ -1,0 +1,35 @@
+$secondary-nav-height: 65px
+
+%secondary-nav
+  height: $secondary-nav-height
+  padding: 0 45px
+  margin-top: -$secondary-nav-height
+  background: rgba(255, 255, 255, 0.8)
+
+  a
+    position: relative
+    padding: 15px 20px
+    text-transform: uppercase
+    line-height: $secondary-nav-height - 30px
+    font-weight: 500
+    font-size: 16px
+    color: black
+    letter-spacing: 1px
+    text-decoration: none
+    transition: 0.15s
+    float: left
+
+    &.active:after
+      position: absolute
+      bottom: 0
+      left: 50%
+      margin-left: -8px
+      content: ''
+      border: 8px solid transparent
+      border-bottom-color: white
+
+@mixin secondary-nav($color)
+  @extend %secondary-nav
+
+  a[href]:hover, a.active
+    color: $color

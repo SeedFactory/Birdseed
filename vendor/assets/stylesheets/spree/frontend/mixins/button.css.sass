@@ -1,0 +1,21 @@
+%button
+  padding: 10px 20px
+  border: 0
+  border-radius: 3px
+  font-size: 16px
+  font-weight: 500
+  letter-spacing: 1px
+  text-transform: uppercase
+  color: white
+  transition: background 0.15s
+
+@mixin button($color)
+  @extend %button
+  background: $color
+
+  &:hover
+    background: lighten($color, 5%)
+
+  &:active
+    background: darken($color, 5%)
+

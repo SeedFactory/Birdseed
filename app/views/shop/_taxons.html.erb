@@ -1,0 +1,19 @@
+<% if taxon %>
+  <h1><%= taxon.name %></h1>
+<% else %>
+  <div class="shop-nav-taxons">
+    <div class="shop-nav-taxons-scroller">
+      <% taxons.each do |t| %>
+        <%= link_to "/shop/#{t.permalink}", class: 'shop-nav-taxon' do %>
+          <% if name %>
+            <div class="shop-nav-taxon-name">
+              <%= t.name %>
+            </div>
+          <% end %>
+          <%= image_tag t.icon(:normal_2x), alt: t.name %>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="shop-nav-taxons-fade"></div>
+  </div>
+<% end %>

@@ -1,0 +1,148 @@
+$blue: #4286CA
+
+.checkout-banner
+  height: 40vh
+  background-image: image-url("banners/orange_feathers.jpg")
+
+.checkout-banner h1
+  top: 15%
+
+.checkout-nav
+  +secondary_nav($blue)
+
+.checkout-register
+  width: 100%
+  max-width: 600px
+  margin: 0 auto
+
+.checkout
+  margin: 0 auto
+  max-width: $screen-sm
+  padding: 30px 30px 100px 30px
+
+  form
+
+    h1, h3
+      margin-bottom: 20px
+
+    label
+      margin-bottom: 0
+      display: block
+
+    input, select
+      margin-top: 5px
+      border-radius: 3px
+
+      &:focus
+        outline: none
+
+    input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select
+      width: 100%
+      font-size: 18px
+      padding: 5px 10px
+      border: 1px solid #DDD
+
+    input[type="submit"]
+      width: 100%
+      +button($blue)
+
+    select
+      height: 40px
+
+  .checkout-form-address-use-billing
+    margin-bottom: 20px
+
+  .checkout-form-actions
+    margin-top: 20px
+    text-align: center
+
+    label, input
+      display: inline-block
+
+    label
+      margin: 20px
+
+    input
+      max-width: 300px
+
+.checkout-payment-expiration-separator:before
+  width: 65px
+  content: '/'
+  position: absolute
+  top: 25px
+  left: 50%
+  text-align: center
+  margin-left: -32px
+  font-size: 21px
+  color: #888
+
+.checkout-payment-saved-cards
+  
+  label
+    margin-bottom: 0
+    position: relative
+    border-top: 1px solid #DDD
+    cursor: pointer
+    font-size: 14px
+    font-weight: 400
+    letter-spacing: 0
+    color: black
+    text-transform: none
+  
+  input
+    position: absolute
+    top: 9px
+    left: 15px
+
+.checkout-payment-new-card
+  padding: 0 40px
+
+.checkout-payment-saved-cards-header,
+.checkout-payment-saved-cards-row
+  +clearfix
+
+.checkout-payment-saved-cards-header
+  @extend %small-caps
+
+.checkout-payment-saved-cards-name,
+.checkout-payment-saved-cards-number,
+.checkout-payment-saved-cards-expiration,
+.checkout-payment-saved-cards-add
+  padding: 10px 0
+
+.checkout-payment-saved-cards-name,
+.checkout-payment-saved-cards-number,
+.checkout-payment-saved-cards-expiration,
+  float: left
+
+  label:hover &
+    background: #FAFAFA
+
+  input:checked ~ &
+    background: #F5F5F5
+
+.checkout-payment-saved-cards-add
+  width: 100%
+  padding-bottom: 20px
+  @extend %small-caps
+  color: $blue !important
+  line-height: 22px
+
+  label:hover &
+    background: linear-gradient(to bottom, #FAFAFA, transparent)
+
+  input:checked ~ &
+    background: linear-gradient(to bottom, #F5F5F5, transparent)
+
+.checkout-payment-saved-cards-number
+  width: 40%
+
+.checkout-payment-saved-cards-row .checkout-payment-saved-cards-number,
+.checkout-payment-saved-cards-add
+  padding-left: 40px
+
+.checkout-payment-saved-cards-name
+  width: 35%
+
+.checkout-payment-saved-cards-expiration
+  width: 25%

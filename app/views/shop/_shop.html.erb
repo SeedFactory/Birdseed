@@ -3,11 +3,11 @@
   <h1>Shop</h1>
 </div>
 <div class="shop-nav">
-  <%= active_link_to 'Specials', app_url_helpers.shop_path, class: 'shop-nav-filter', active: :exclusive %>
-  <%= active_link_to 'Brands', app_url_helpers.shop_brands_path, class: 'shop-nav-filter' %>
-  <%= active_link_to 'Birds', app_url_helpers.shop_birds_path, class: 'shop-nav-filter' %>
-  <%= active_link_to 'Search', app_url_helpers.shop_search_path, class: 'shop-nav-filter' %>
-  <%= active_link_to app_url_helpers.shop_cart_path, class: 'shop-nav-cart' do %>
+  <%= active_link_to 'Specials', app_url_helpers.shop_path, active: :exclusive %>
+  <%= active_link_to 'Brands', app_url_helpers.shop_brands_path %>
+  <%= active_link_to 'Birds', app_url_helpers.shop_birds_path %>
+  <%= active_link_to 'Search', app_url_helpers.shop_search_path %>
+  <%= active_link_to cart_path, class: 'shop-nav-cart' do %>
     <span class="shop-nav-cart-icon glyphicon glyphicon-shopping-cart"></span>
     <% if simple_current_order.item_count > 0 %>
       <span class="shop-nav-cart-count">
@@ -23,15 +23,17 @@
   </div>
   <% if @products %>
     <% if @products.any? %>
-      <div class="shop-products-list">
+      <div class="shop-products-list row">
         <% @products.each do |product| %>
-          <%= link_to product, class: 'shop-product' do %>
-            <%= product_image(product) %>
+          <%= link_to product, class: 'shop-product col-lg-3 col-md-4 col-sm-6' do %>
+            <%= large_image(product) %>
             <div class="shop-product-name">
               <%= truncate(product.name, length: 50) %>
             </div>
-            <div class="shop-product-price">
-              <%= display_price(product) %>
+            <div class="shop-product-variants">
+              <% product.variants.each do |variant| %>
+                <%= variant.option_types %>
+              <% end %>
             </div>
           <% end %>
         <% end %>

@@ -1,0 +1,15 @@
+<div class="checkout-nav">
+  <% if local_assigns[:index] %>
+    <% states[0...index].each do |state| %>
+      <%= link_to state.titleize, checkout_state_path(state) %>
+    <% end %>
+    <a class="active"><%= states[index].titleize %></a>
+    <% states[(index + 1)..-1].each do |state| %>
+      <a><%= state.titleize %></a>
+    <% end %>
+  <% else %>
+    <% states.each do |state| %>
+      <a><%= state.titleize %></a>
+    <% end %>
+  <% end %>
+</div>

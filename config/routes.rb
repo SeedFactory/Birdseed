@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   get '/shop/birds(/:bird)' => 'shop#birds', as: 'shop_birds'
   get '/shop/brands(/:brand)' => 'shop#brands', as: 'shop_brands'
   get '/shop/search' => 'shop#search'
-  get '/shop/cart' => 'spree/orders#edit'
+
+  patch '/checkout/:state', :to => 'spree/checkout#update', :as => :update_checkout
 
   mount Spree::Core::Engine, :at => '/'
 

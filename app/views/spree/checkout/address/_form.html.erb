@@ -1,0 +1,19 @@
+<%= form_group form, :firstname, label: 'First name' %>
+<%= form_group form, :lastname, label: 'Last name' %>
+<div class="form-group<%= error_class(@order.errors, :address1) %>">
+  <%= form.label :address1 %>
+  <%= form.text_field :address1 %>
+  <%= form.text_field :address2 %>
+  <%= error_hint @order.errors, :address1 %>
+</div>
+<div class="row">
+  <div class="col-xs-8">
+    <%= form_group form, :city %>
+  </div>
+  <div class="col-xs-4">
+    <%= form_group form, :state_id, collection:
+      [Spree::Country.default.states, :id, :abbr, include_blank: true] %>
+  </div>
+</div>
+<%= form_group form, :zipcode %>
+<%= form_group form, :phone %>

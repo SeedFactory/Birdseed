@@ -1,0 +1,4 @@
+<% if (sum = adjustments.sum(&:amount)) != 0 %>
+  <th><%= label %></th>
+  <td><%= Spree::Money.new(sum, currency: @order.currency) %></td>
+<% end %>

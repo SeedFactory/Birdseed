@@ -25,8 +25,26 @@
             </tr>
           <% end %>
         <% end %>
-        <tr class="cart-total">
-          <td colspan="3" class="cart-items-numeric">
+      </table>
+      <table class="cart-total">
+        <tr>
+          <th>Subtotal</th>
+          <td><%= @order.display_item_total %></td>
+        </tr>
+        <% if @order.line_item_adjustments.exists? %>
+          <% @order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+            <%= render 'adjustment', label: "Promotion: #{label}", adjustments: adjustments %>
+          <% end %>
+        <% end %>
+        <% @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments| %>
+          <%= render 'adjustment', label: 'Tax', adjustments: adjustments %>
+        <% end %>
+        <% @order.adjustments.eligible.group_by(&:label).each do |label, adjustments| %>
+          <%= render 'adjustment', label: "Adjustment: #{label}", adjustments: adjustments %>
+        <% end %>
+        <tr>
+          <th>Total</th>
+          <td class="cart-grand-total">
             <%= @order.display_total %>
           </td>
         </tr>

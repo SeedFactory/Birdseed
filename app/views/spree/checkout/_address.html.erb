@@ -1,0 +1,29 @@
+<div class="row">
+  <div class="col-md-6">
+    <h1>Billing Address</h1>
+    <%= form.fields_for :bill_address do |bill_form| %>
+      <%= render 'spree/checkout/address/form', form: bill_form %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <h1>Shipping Address</h1>
+    <%= form.fields_for :ship_address do |ship_form| %>
+      <label class="checkout-form-address-use-billing">
+        <%= check_box_tag 'order[use_billing]', '1', @order.shipping_eq_billing_address? %>
+        Use billing address?
+      </label>
+      <div id="shipping_address_fields">
+        <%= render 'spree/checkout/address/form', form: ship_form %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<div class="checkout-form-actions">
+  <% if spree_current_user %>
+    <label>
+      <%= check_box_tag 'save_user_address', '1', true %>
+      Save Address?
+    </label>
+  <% end %>
+  <%= submit_tag 'Save and Continue' %>
+</div>

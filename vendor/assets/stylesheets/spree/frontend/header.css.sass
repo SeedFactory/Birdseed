@@ -1,0 +1,47 @@
+@import bootstrap/variables
+
+.birdseed-header
+  width: 100%
+  padding: 50px
+
+.birdseed-logo
+  position: relative
+  top: -3px
+  margin: 0 0 0 15px
+  float: left
+
+.birdseed-logo img
+  width: 150px
+  position: absolute
+
+.birdseed-logo-white
+  display: none
+
+.birdseed-header-inverse
+  .birdseed-logo-white
+    display: block
+
+  .birdseed-logo-black
+    display: none
+
+  .birdseed-header
+    position: absolute
+
+  .birdseed-nav a
+    color: white
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.75)
+
+.birdseed-nav
+  float: right
+
+.birdseed-nav a
+  padding: 15px
+  color: black
+  text-transform: uppercase
+  letter-spacing: 2px
+  font-weight: 400
+  font-size: 15px
+  transition: 0.15s
+
+.birdseed-nav a:hover
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.65)

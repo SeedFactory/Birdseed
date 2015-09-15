@@ -1,0 +1,88 @@
+<div class="checkout-payment">
+  <h1>Payment Method</h1>
+  <% if @payment_sources.present? %>
+    <h3>
+      Choose a card you've used before or enter a new one.
+    </h3>
+    <div class="checkout-payment-saved-cards">
+      <div class="checkout-payment-saved-cards-header">
+        <div class="checkout-payment-saved-cards-number">
+          Cards
+        </div>
+        <div class="checkout-payment-saved-cards-name">
+          Name
+        </div>
+        <div class="checkout-payment-saved-cards-expiration">
+          Expiration
+        </div>
+      </div>
+      <% @payment_sources.each do |card| %>
+        <label class="checkout-payment-saved-cards-row">
+          <%= radio_button_tag 'order[existing_card]', card.id, (card == @payment_sources.first && @order.errors.none?) %>
+          <div class="checkout-payment-saved-cards-number">
+            <%= cc_type_for(card) %> Ending In <%= card.last_digits %>
+          </div>
+          <div class="checkout-payment-saved-cards-name">
+            <%= card.name %>
+          </div>
+          <div class="checkout-payment-saved-cards-expiration">
+            <%= card.month %>/<%= card.year %>
+          </div>
+        </label>
+      <% end %>
+      <label class="checkout-payment-saved-cards-row">
+        <%= radio_button_tag 'order[existing_card]', '', @order.errors.any? %>
+        <div class="checkout-payment-saved-cards-add">
+          Add New Card
+        </div>
+      </label>
+    </div>
+  <% end %>
+  <div class="checkout-payment-new-card">
+    <%
+      id = @order.available_payment_methods.first.id
+      param_prefix = "payment_source[#{id}]"
+      source = @order.payments.find{|p| p.errors.any? }.try(:source)
+      source_errors = source ? source.errors : ActiveModel::Errors.new(nil)
+    %>
+    <%= hidden_field_tag "order[payments_attributes][][payment_method_id]", id %>
+    <%= hidden_field_tag "#{param_prefix}[cc_type]", '', class: 'checkout-payment-cc-type' %>
+    <div class="form-group<%= error_class(source_errors, :name) %>">
+      <%= label_tag "payment_source_#{id}_name", 'Name On Card' %>
+      <%= text_field_tag "#{param_prefix}[name]", "#{@order.billing_firstname} #{@order.billing_lastname}" %>
+      <%= error_hint(source_errors, :name) %>
+    </div>
+    <div class="form-group<%= error_class(source_errors, :number) %>">
+      <%= label_tag "payment_source_#{id}_number", 'Card Number' %>
+      <%= telephone_field_tag "#{param_prefix}[number]", '', size: 19, maxlength: 19, autocomplete: 'cc-number', class: 'checkout-payment-number' %>
+      <%= error_hint(source_errors, :number) %>
+    </div>
+    <div class="row">
+      <div class="col-sm-8 form-group">
+        <%= label_tag "payment_source_#{id}_expiry", 'Card Expiration' %>
+        <div class="row">
+          <div class="col-xs-6">
+            <%= select param_prefix, 'month', 1..12 %>
+          </div>
+          <div class="col-xs-6">
+            <%= select param_prefix, 'year', Time.now.year..(Time.now.year+10) %>
+          </div>
+          <div class="checkout-payment-expiration-separator"></div>
+        </div>
+      </div>
+      <div class="col-sm-4 form-group<%= error_class(source_errors, :verification_value) %>">
+        <%= label_tag "payment_source_#{id}_verification_value" do %>
+          CVV
+          <%= link_to spree.content_path('cvv'), target: '_blank' do %>
+            <span class="glyphicon glyphicon-question-sign"></span>
+          <% end %>
+        <% end %>
+        <%= telephone_field_tag "#{param_prefix}[verification_value]", '', size: 5, autocomplete: 'off', class: 'checkout-payment-verification-value' %>
+        <%= error_hint(source_errors, :verification_value) %>
+      </div>
+    </div>
+  </div>
+  <div class="checkout-form-actions">
+    <%= form.submit 'Save and Continue' %>
+  </div>
+</div>
