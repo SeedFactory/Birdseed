@@ -5,11 +5,14 @@ Rails.application.routes.draw do
   get '/talk_to_us' => 'static#talk_to_us'
 
   get '/shop' => 'shop#index'
-  get '/shop/birds(/:bird)' => 'shop#birds', as: 'shop_birds'
-  get '/shop/brands(/:brand)' => 'shop#brands', as: 'shop_brands'
+  get '/shop/birds(/:bird)' => 'shop#birds', as: :shop_birds
+  get '/shop/brands(/:brand)' => 'shop#brands', as: :shop_brands
   get '/shop/search' => 'shop#search'
 
-  patch '/checkout/:state', :to => 'spree/checkout#update', :as => :update_checkout
+  patch '/checkout/:state' => 'spree/checkout#update', :as => :update_checkout
+
+  get '/login' => 'login#new', as: :login
+  post '/login' => 'login#create'
 
   mount Spree::Core::Engine, :at => '/'
 

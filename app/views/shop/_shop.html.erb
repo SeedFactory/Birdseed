@@ -2,46 +2,88 @@
 <div class="shop-banner">
   <h1>Shop</h1>
 </div>
-<div class="shop-nav">
-  <%= active_link_to 'Specials', app_url_helpers.shop_path, active: :exclusive %>
-  <%= active_link_to 'Brands', app_url_helpers.shop_brands_path %>
-  <%= active_link_to 'Birds', app_url_helpers.shop_birds_path %>
-  <%= active_link_to 'Search', app_url_helpers.shop_search_path %>
-  <%= active_link_to cart_path, class: 'shop-nav-cart' do %>
-    <span class="shop-nav-cart-icon glyphicon glyphicon-shopping-cart"></span>
-    <% if simple_current_order.item_count > 0 %>
-      <span class="shop-nav-cart-count">
-        <%= simple_current_order.item_count %>
-      </span>
-    <% end %>
-    View Cart
-  <% end %>
-</div>
 <div class="shop-products">
+  <div class="shop-nav" data-scroll-target>
+    <%= active_link_to app_url_helpers.shop_path, active: :exclusive do %>
+      <span class="glyphicon glyphicon-star"></span>
+      Specials
+    <% end %>
+    <%= active_link_to app_url_helpers.shop_brands_path do %>
+      <span class="glyphicon glyphicon-tag"></span>
+      Brands
+    <% end %>
+    <%= active_link_to app_url_helpers.shop_birds_path do %>
+      <span class="glyphicon glyphicon-leaf"></span>
+      Birds
+    <% end %>
+    <%= active_link_to app_url_helpers.shop_search_path do %>
+      <span class="glyphicon glyphicon-search"></span>
+      Search
+    <% end %>
+    <%= active_link_to cart_path, class: 'pull-right' do %>
+      <span class="glyphicon glyphicon-shopping-cart">
+        <% if simple_current_order.item_count > 0 %>
+          <span class="count">
+            <%= simple_current_order.item_count %>
+          </span>
+        <% end %>
+      </span>
+      Cart
+    <% end %>
+  </div>
   <div class="shop-nav-filters">
     <%= yield %>
   </div>
   <% if @products %>
-    <% if @products.any? %>
-      <div class="shop-products-list row">
-        <% @products.each do |product| %>
-          <%= link_to product, class: 'shop-product col-lg-3 col-md-4 col-sm-6' do %>
-            <%= large_image(product) %>
-            <div class="shop-product-name">
-              <%= truncate(product.name, length: 50) %>
-            </div>
-            <div class="shop-product-variants">
-              <% product.variants.each do |variant| %>
-                <%= variant.option_types %>
-              <% end %>
+    <div class="container-fluid">
+      <% if @products.any? %>
+        <div class="shop-products-list row">
+          <% @products.each do |product| %>
+            <div class="col-lg-3 col-md-4 col-sm-6">
+              <div class="shop-product">
+                <%= link_to product do %>
+                  <div class="shop-product-image" style="background-image: url(<%= product.images.first.attachment(:large) %>);"></div>
+                  <% if brand_name = brand(product) %>
+                    <div class="shop-product-brand">
+                      <%= brand_name %>
+                    </div>
+                  <% end %>
+                  <div class="shop-product-name">
+                    <%= truncate(product.name, length: 50) %>
+                  </div>
+                <% end %>
+<%
+=begin %>
+                <div class="shop-product-variants">
+                  <% product.variants_and_option_values.each do |variant| %>
+                    <%= form_tag populate_orders_path, method: :post do %>
+                      <%= hidden_field_tag :variant_id, variant.id %>
+                      <%= hidden_field_tag :quantity, 1 %>
+                      <button type="submit" class="shop-product-variant">
+                        <div class="shop-product-variant-name">
+                          <%= option_values variant %>
+                        </div>
+                        <div class="shop-product-variant-price">
+                          <%= price variant %>
+                        </div>
+                        <div class="shop-product-variant-add">
+                          Add To Cart
+                        </div>
+                      </button>
+                    <% end %>
+                  <% end %>
+                </div>
+<%
+=end %>
+              </div>
             </div>
           <% end %>
-        <% end %>
-      </div>
-    <% else %>
-      <div class="shop-products-empty">
-        No products found
-      </div>
-    <% end %>
+        </div>
+      <% else %>
+        <div class="shop-products-empty">
+          No products found
+        </div>
+      <% end %>
+    </div>
   <% end %>
 </div>

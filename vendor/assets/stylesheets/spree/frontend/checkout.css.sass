@@ -1,5 +1,3 @@
-$blue: #4286CA
-
 .checkout-banner
   height: 40vh
   background-image: image-url("banners/orange_feathers.jpg")
@@ -16,63 +14,73 @@ $blue: #4286CA
   margin: 0 auto
 
 .checkout
-  margin: 0 auto
-  max-width: $screen-sm
-  padding: 30px 30px 100px 30px
+  padding-top: 30px
+  padding-bottom: 100px
 
-  form
+  form label
+    a, a:hover, :active
+      color: $blue
 
-    h1, h3
-      margin-bottom: 20px
+.checkout-address
+  
+  h1
+    margin: 0 0 30px 0
 
-    label
-      margin-bottom: 0
-      display: block
+.checkout-address-type
+  margin-bottom: 30px
 
-    input, select
-      margin-top: 5px
-      border-radius: 3px
+.checkout-address-use-billing-label
+  margin-bottom: 20px
 
-      &:focus
-        outline: none
+.checkout-actions
+  text-align: center
 
-    input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select
-      width: 100%
-      font-size: 18px
-      padding: 5px 10px
-      border: 1px solid #DDD
+  label, input
+    display: inline-block
 
-    input[type="submit"]
-      width: 100%
-      +button($blue)
+  label
+    margin-right: 20px
 
-    select
-      height: 40px
+  input
+    max-width: 300px
 
-  .checkout-form-address-use-billing
-    margin-bottom: 20px
-
-  .checkout-form-actions
-    margin-top: 20px
-    text-align: center
-
-    label, input
-      display: inline-block
-
-    label
-      margin: 20px
+  @media (max-width: $screen-xs-max)
+    text-align: left
 
     input
-      max-width: 300px
+      max-width: none
+
+    input[type="checkbox"]
+      margin-bottom: 20px
+
+.checkout-address-city-state
+  display: table
+  table-layout: fixed
+
+.checkout-address-city,
+.checkout-address-state
+  display: table-cell
+
+.checkout-address-city
+  width: 100%
+  padding-right: 20px
+
+.checkout-address-state
+  min-width: 70px
+
+.checkout-payment
+
+  h3
+    margin: 10px 0 20px 0
 
 .checkout-payment-expiration-separator:before
-  width: 65px
+  width: 40px
   content: '/'
   position: absolute
   top: 25px
   left: 50%
   text-align: center
-  margin-left: -32px
+  margin-left: -20px
   font-size: 21px
   color: #888
 
@@ -81,7 +89,7 @@ $blue: #4286CA
   label
     margin-bottom: 0
     position: relative
-    border-top: 1px solid #DDD
+    border-top: 1px solid $border-color
     cursor: pointer
     font-size: 14px
     font-weight: 400
@@ -95,14 +103,19 @@ $blue: #4286CA
     left: 15px
 
 .checkout-payment-new-card
-  padding: 0 40px
+  margin-bottom: 30px
 
 .checkout-payment-saved-cards-header,
 .checkout-payment-saved-cards-row
   +clearfix
 
 .checkout-payment-saved-cards-header
-  @extend %small-caps
+  +small-caps
+
+  @media (max-width: $screen-xs-max)
+    .checkout-payment-saved-cards-name,
+    .checkout-payment-saved-cards-expiration
+      display: none
 
 .checkout-payment-saved-cards-name,
 .checkout-payment-saved-cards-number,
@@ -115,34 +128,104 @@ $blue: #4286CA
 .checkout-payment-saved-cards-expiration,
   float: left
 
-  label:hover &
-    background: #FAFAFA
+  @media (max-width: $screen-xs-max)
+    float: none
 
-  input:checked ~ &
-    background: #F5F5F5
+  label:hover &
+    background: $row-hover-background-color
+
+  input:checked ~ &, label:active &
+    background: $row-active-background-color
 
 .checkout-payment-saved-cards-add
   width: 100%
   padding-bottom: 20px
-  @extend %small-caps
+  +small-caps
   color: $blue !important
   line-height: 22px
 
   label:hover &
-    background: linear-gradient(to bottom, #FAFAFA, transparent)
+    background: linear-gradient(to bottom, $row-hover-background-color, rgba($row-hover-background-color, 0))
 
-  input:checked ~ &
-    background: linear-gradient(to bottom, #F5F5F5, transparent)
+  input:checked ~ &, label:active &
+    background: linear-gradient(to bottom, $row-active-background-color, rgba($row-active-background-color, 0))
 
 .checkout-payment-saved-cards-number
-  width: 40%
+  width: 35%
 
 .checkout-payment-saved-cards-row .checkout-payment-saved-cards-number,
 .checkout-payment-saved-cards-add
   padding-left: 40px
 
 .checkout-payment-saved-cards-name
-  width: 35%
+  width: 50%
 
 .checkout-payment-saved-cards-expiration
-  width: 25%
+  width: 15%
+
+@media (max-width: $screen-xs-max)
+  
+  .checkout-payment-saved-cards-name,
+  .checkout-payment-saved-cards-number,
+  .checkout-payment-saved-cards-expiration
+    width: auto
+
+  .checkout-payment-saved-cards-row
+
+    .checkout-payment-saved-cards-name,
+    .checkout-payment-saved-cards-expiration
+      padding-left: 40px
+
+    .checkout-payment-saved-cards-number,
+    .checkout-payment-saved-cards-name
+      padding-bottom: 0
+
+    .checkout-payment-saved-cards-name,
+    .checkout-payment-saved-cards-expiration
+      padding-top: 0
+
+    .checkout-payment-saved-cards-number
+      font-size: 18px
+
+    .checkout-payment-saved-cards-expiration
+      color: $light-text-color
+
+.checkout-confirm
+  width: 100%
+  display: table
+  table-layout: fixed
+
+  h1
+    margin: 0
+
+  h4
+    margin: 30px 0 10px 0
+
+.checkout-confirm-details,
+.checkout-confirm-cart
+  display: table-cell
+
+.checkout-confirm-cart
+  width: 100%
+
+.checkout-confirm-details
+  width: 300px
+  white-space: nowrap
+  padding-right: $window-padding
+
+@media (max-width: $screen-xs-max)
+  
+  .checkout-confirm
+    display: block
+
+  .checkout-confirm-details,
+  .checkout-confirm-cart
+    display: block
+
+  .checkout-confirm-details
+    width: auto
+    white-space: normal
+    padding-right: 0
+
+  .checkout-confirm-cart
+    margin-top: 30px

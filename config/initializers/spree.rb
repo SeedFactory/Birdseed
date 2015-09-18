@@ -12,7 +12,7 @@
 Spree.config do |config|
   # Example:
   # Uncomment to stop tracking inventory levels in the application
-  # config.track_inventory_levels = false
+  config.track_inventory_levels = false
   config.admin_interface_logo = 'logo-white.png'
 end
 
@@ -37,7 +37,12 @@ else
   }
 end
 
-Spree::Image.attachment_definitions[:attachment].merge!(paperclip_options)
-Spree::Taxon.attachment_definitions[:icon].merge!(paperclip_options)
+product_settings = Spree::Image.attachment_definitions[:attachment]
+taxon_settings = Spree::Taxon.attachment_definitions[:icon]
+
+product_settings
+  .merge!(paperclip_options)
+taxon_settings
+  .merge!(paperclip_options)
   .merge!(styles: { normal: '100x167>', normal_2x: '200x333>' },
     default_style: :normal)

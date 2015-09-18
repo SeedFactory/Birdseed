@@ -1,0 +1,8 @@
+<%= address.firstname %> <%= address.lastname %><br />
+<%= address.address1 %><br />
+<% if address.address2? %>
+  <%= address.address2 %><br />
+<% end %>
+<%= address.city %>, <%= address.state.abbr %>
+<%= address.zipcode %><br />
+<%= address.phone %>

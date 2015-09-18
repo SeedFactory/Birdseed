@@ -1,5 +1,5 @@
 <div class="checkout-payment">
-  <h1>Payment Method</h1>
+  <h1>Payment</h1>
   <% if @payment_sources.present? %>
     <h3>
       Choose a card you've used before or enter a new one.
@@ -62,7 +62,7 @@
         <%= label_tag "payment_source_#{id}_expiry", 'Card Expiration' %>
         <div class="row">
           <div class="col-xs-6">
-            <%= select param_prefix, 'month', 1..12 %>
+            <%= select param_prefix, 'month', 1..12, selected: Time.now.month %>
           </div>
           <div class="col-xs-6">
             <%= select param_prefix, 'year', Time.now.year..(Time.now.year+10) %>
@@ -82,7 +82,7 @@
       </div>
     </div>
   </div>
-  <div class="checkout-form-actions">
+  <div class="checkout-actions">
     <%= form.submit 'Save and Continue' %>
   </div>
 </div>

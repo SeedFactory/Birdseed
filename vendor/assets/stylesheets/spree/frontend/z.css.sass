@@ -1,0 +1,4 @@
+$z-indices: (birdseed-nav-toggle, birdseed-nav, scroller-control)
+
+@mixin z($name)
+  z-index: length($z-indices) - index($z-indices, $name) + 1

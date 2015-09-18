@@ -1,47 +1,59 @@
 <% @body_class = 'birdseed-header-inverse' %>
 <div class="home-banner">
   <h1>Welcome to Birdseed.com</h1>
-  <%= link_to 'Shop', Rails.application.routes.url_helpers.shop_path %>
+  <%= link_to 'Shop', app_url_helpers.shop_path %>
 </div>
-<div class="featured">
-  <%= link_to '/', class: 'featured-item' do %>
-    <%= image_tag 'featured/versele-laga.png' %>
-    <div class="featured-title">
-      <h6>New Product</h6>
-      <h1>Versele-Laga</h1>
-    </div>
-    <div class="featured-info">
-      <p>
-        Your pigeon will reach mach 1 with our new food, high in trans fats and
-        sugar.
-      </p>
-      <span>More</span>
-    </div>
-  <% end %>
-  <%= link_to '/', class: 'featured-item' do %>
-    <%= image_tag 'featured/new_website.png' %>
-    <div class="featured-title">
-      <h6>Announcement</h6>
-      <h1>New Website</h1>
-    </div>
-    <div class="featured-info">
-      <p>
-        Now you can waste more time on the Internet.
-      </p>
-      <span>More</span>
-    </div>
-  <% end %>
-  <%= link_to '/', class: 'featured-item' do %>
-    <%= image_tag 'featured/volkman_redesign.png' %>
-    <div class="featured-title">
-      <h6>Announcement</h6>
-      <h1>Volkman Redesign</h1>
-    </div>
-    <div class="featured-info">
-      <p>
-        Does your parrot have an eye for design? He will love our new packages!
-      </p>
-      <span>More</span>
-    </div>
-  <% end %>
+<div class="featured" data-scroller-container>
+  <div class="featured-control-left" data-scroller-left>
+    <span class="glyphicon glyphicon-menu-left"></span>
+  </div>
+  <div class="featured-scroller" data-scroller>
+    <%= link_to '/', class: 'featured-item', data: { scroller_target: '' } do %>
+      <div class="featured-item-image">
+        <%= image_tag 'featured/versele-laga.png' %>
+      </div>
+      <div class="featured-item-info">
+        <div class="featured-item-header">
+          <div class="featured-item-type">New Product</div>
+          <div class="featured-item-title">Versele-Laga</div>
+        </div>
+        <div class="featured-item-body">
+          Your pigeon will reach mach 1 with our new food,
+          high in trans fats and sugar.
+        </div>
+      </div>
+    <% end %>
+    <%= link_to '/', class: 'featured-item', data: { scroller_target: '' } do %>
+      <div class="featured-item-image">
+        <%= image_tag 'featured/new_website.png' %>
+      </div>
+      <div class="featured-item-info">
+        <div class="featured-item-header">
+          <div class="featured-item-type">Announcement</div>
+          <div class="featured-item-title">New Website</div>
+        </div>
+        <div class="featured-item-body">
+          Now you can waste more time on the Internet.
+        </div>
+      </div>
+    <% end %>
+    <%= link_to '/', class: 'featured-item', data: { scroller_target: '' } do %>
+      <div class="featured-item-image">
+        <%= image_tag 'featured/volkman_redesign.png' %>
+      </div>
+      <div class="featured-item-info">
+        <div class="featured-item-header">
+          <div class="featured-item-type">Announcement</div>
+          <div class="featured-item-title">Volkman Redesign</div>
+        </div>
+        <div class="featured-item-body">
+          Does your parrot have an eye for design?
+          He will love our new packages!
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="featured-control-right" data-scroller-right>
+    <span class="glyphicon glyphicon-menu-right"></span>
+  </div>
 </div>

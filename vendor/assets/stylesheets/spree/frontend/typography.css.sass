@@ -5,23 +5,33 @@ body
 
 h1
   font-size: 42px
-  font-weight: 300
+
+h2
+  font-size: 36px
 
 h3
   font-size: 24px
+
+h4
+  font-size: 21px
+
+h3, h4
+  color: $light-text-color
+
+h1, h2, h3, h4
   font-weight: 300
-  color: #AAA
+  margin: 0
 
 a
+  color: inherit
+  touch-action: manipulation
+  user-select: none
+
+  &:hover
+    color: inherit
+
   &:hover, &:focus
     text-decoration: none
 
-%small-caps
-  font-weight: 500
-  font-size: 12px
-  text-transform: uppercase
-  color: #888
-  letter-spacing: 1px
-
 form label, table th
-  @extend %small-caps
+  +small-caps

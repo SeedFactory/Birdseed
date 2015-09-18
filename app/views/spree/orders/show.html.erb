@@ -1,0 +1,10 @@
+<div class="order">
+  <div class="container-fluid">
+    <h1>Order <%= @order.number %></h1>
+    <div class="alert alert-info">
+      <strong>Thank you for your purchase!</strong>
+      Please print out this page for your records.
+    </div>
+    <%= render 'spree/shared/order' %>
+  </div>
+</div>

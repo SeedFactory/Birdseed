@@ -1,0 +1,40 @@
+<table class="cart-items">
+  <tr>
+    <th colspan="2">Product</th>
+    <th class="cart-items-numeric cart-item-price-column">Price</th>
+    <th class="cart-items-numeric">Quantity</th>
+    <th class="cart-items-numeric">Total</th>
+  </tr>
+  <% @order.line_items.each do |item| %>
+    <% if local_assigns[:form] %>
+      <%= form.fields_for :line_items, item do |item_form| %>
+        <%= render 'spree/shared/line_item', item: item, form: item_form %>
+      <% end %>
+    <% else %>
+      <%= render 'spree/shared/line_item', item: item %>
+    <% end %>
+  <% end %>
+</table>
+<table class="cart-total">
+  <tr>
+    <th>Subtotal</th>
+    <td><%= @order.display_item_total %></td>
+  </tr>
+  <% if @order.line_item_adjustments.exists? %>
+    <% @order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
+      <%= render 'spree/shared/adjustment', label: "Promotion: #{label}", adjustments: adjustments %>
+    <% end %>
+  <% end %>
+  <% @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments| %>
+    <%= render 'spree/shared/adjustment', label: 'Tax', adjustments: adjustments %>
+  <% end %>
+  <% @order.adjustments.eligible.group_by(&:label).each do |label, adjustments| %>
+    <%= render 'spree/shared/adjustment', label: "Adjustment: #{label}", adjustments: adjustments %>
+  <% end %>
+  <tr>
+    <th>Total</th>
+    <td class="cart-grand-total">
+      <%= @order.display_total %>
+    </td>
+  </tr>
+</table>

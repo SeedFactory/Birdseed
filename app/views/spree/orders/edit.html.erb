@@ -1,54 +1,18 @@
 <%= render layout: 'shop/shop' do %>
-  <% if @order.line_items.empty? %>
-    <div class="cart-empty">
-      <h1>Your cart is empty</h1>
-      <%= link_to 'Continue Shopping', app_url_helpers.shop_path %>
-    </div>
-  <% else %>
-    <%= form_for @order, url: update_cart_path, html: { class: 'cart' } do |form| %>
-      <div class="cart-header">
-        <h1>Your Cart</h1>
-        <%= form.submit 'Checkout', name: 'checkout' %>
+  <div class="container-fluid">
+    <% if @order.line_items.empty? %>
+      <div class="cart-empty">
+        <h1>Your cart is empty</h1>
+        <%= link_to 'Continue Shopping', app_url_helpers.shop_path %>
       </div>
-      <table class="cart-items">
-        <tr>
-          <th>Product</th>
-          <th class="cart-items-numeric">Quantity</th>
-          <th class="cart-items-numeric">Total</th>
-        </tr>
-        <% @order.line_items.each do |item| %>
-          <%= form.fields_for :line_items, item do |item_form| %>
-            <tr>
-              <td><%= link_to item.name, item.variant.product %></td>
-              <td class="cart-items-numeric"><%= item_form.select :quantity, 0..50 %></td>
-              <td class="cart-items-numeric"><%= item.display_amount.to_html %></td>
-            </tr>
-          <% end %>
-        <% end %>
-      </table>
-      <table class="cart-total">
-        <tr>
-          <th>Subtotal</th>
-          <td><%= @order.display_item_total %></td>
-        </tr>
-        <% if @order.line_item_adjustments.exists? %>
-          <% @order.line_item_adjustments.promotion.eligible.group_by(&:label).each do |label, adjustments| %>
-            <%= render 'adjustment', label: "Promotion: #{label}", adjustments: adjustments %>
-          <% end %>
-        <% end %>
-        <% @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments| %>
-          <%= render 'adjustment', label: 'Tax', adjustments: adjustments %>
-        <% end %>
-        <% @order.adjustments.eligible.group_by(&:label).each do |label, adjustments| %>
-          <%= render 'adjustment', label: "Adjustment: #{label}", adjustments: adjustments %>
-        <% end %>
-        <tr>
-          <th>Total</th>
-          <td class="cart-grand-total">
-            <%= @order.display_total %>
-          </td>
-        </tr>
-      </table>
+    <% else %>
+      <div class="cart-header">
+        <h1>Cart</h1>
+        <%= link_to 'Checkout', checkout_path %>
+      </div>
+      <%= form_for @order, url: update_cart_path, html: { class: 'cart' } do |form| %>
+        <%= render 'spree/shared/cart', form: form %>
+      <% end %>
     <% end %>
-  <% end %>
+  </div>
 <% end %>

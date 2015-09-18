@@ -2,22 +2,29 @@
 
 .birdseed-header
   width: 100%
-  padding: 50px
+  padding-top: $window-padding
+  padding-bottom: $window-padding
+  +clearfix
 
 .birdseed-logo
+  margin: 0
   position: relative
   top: -3px
-  margin: 0 0 0 15px
   float: left
 
 .birdseed-logo img
   width: 150px
-  position: absolute
+  vertical-align: top
+
+.birdseed-logo a
+  height: 21px
+  display: block
 
 .birdseed-logo-white
   display: none
 
 .birdseed-header-inverse
+
   .birdseed-logo-white
     display: block
 
@@ -27,14 +34,89 @@
   .birdseed-header
     position: absolute
 
-  .birdseed-nav a
-    color: white
-    text-shadow: 0 0 5px rgba(0, 0, 0, 0.75)
+    a
+      color: white
+      text-shadow: 0 0 5px rgba(0, 0, 0, 0.75)
+
+    .birdseed-nav-toggle-icon-bar
+      background: white
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.75)
 
 .birdseed-nav
+  margin-right: -15px
   float: right
 
-.birdseed-nav a
+.birdseed-nav-toggle
+  display: none
+
+@media (max-width: $screen-xs-max)
+  
+  .birdseed-header .birdseed-nav a
+    color: white
+  
+  .birdseed-nav-toggle
+    +square(50px)
+    margin: -15px -15px 0 0
+    float: right
+    display: block
+    position: relative
+    +z(birdseed-nav-toggle)
+
+  .birdseed-nav-toggle-icon-bar
+    width: 20px
+    height: 2px
+    display: block
+    position: absolute
+    background: black
+    transition: all 0.15s
+
+    &:first-child
+      transform: translateY(6px)
+
+    &:last-child
+      transform: translateY(14px)
+
+  html.birdseed-nav-toggled
+    height: 100%
+    overflow: hidden
+
+    body
+      height: 100%
+      overflow: hidden
+
+    .birdseed-nav
+      opacity: 1
+      transform: none
+
+    .birdseed-nav-toggle-icon-bar
+      margin: 0
+      box-shadow: none
+      background: white
+
+      &:first-child
+        transform: translateY(10px) rotate(135deg)
+
+      &:last-child
+        transform: translateY(10px) rotate(45deg)
+
+  .birdseed-nav
+    width: 100vw
+    height: 100vh
+    position: absolute
+    top: 0
+    left: 0
+    padding: 75px 0
+    background: rgba(black, 0.9)
+    +z(birdseed-nav)
+    text-align: center
+    opacity: 0
+    transform: translateY(-100%)
+    transition: all 0.15s
+
+    a
+      display: block
+
+.birdseed-nav a, .birdseed-nav-toggle
   padding: 15px
   color: black
   text-transform: uppercase
@@ -43,5 +125,5 @@
   font-size: 15px
   transition: 0.15s
 
-.birdseed-nav a:hover
-  text-shadow: 0 0 10px rgba(255, 255, 255, 0.65)
+  &:hover
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.65)

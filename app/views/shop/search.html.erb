@@ -1,6 +1,15 @@
 <%= render layout: 'shop/shop' do %>
-  <%= form_tag app_url_helpers.shop_search_path, method: 'GET', enforce_utf8: false, class: 'shop-search-form' do %>
-    <%= text_field_tag 'query', @query, placeholder: 'Search...', autofocus: true %>
-    <%= submit_tag 'Search', name: nil %>
-  <% end %>
+  <div class="container-fluid shop-search" data-scroll-target>
+    <div class="row">
+      <h1 class="col-lg-5 col-md-3 col-sm-3">Search</h1>
+      <%= form_tag app_url_helpers.shop_search_path, method: 'GET', enforce_utf8: false, class: 'shop-search-form' do %>
+        <div class="col-lg-5 col-md-6 col-sm-6 form-group">
+          <%= text_field_tag 'query', @query, placeholder: 'Search...', autofocus: true %>
+        </div>
+        <div class="col-lg-2 col-md-3 col-sm-3">
+          <%= submit_tag 'Search', name: nil %>
+        </div>
+      <% end %>
+    </div>
+  </div>
 <% end %>

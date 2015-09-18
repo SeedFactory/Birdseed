@@ -1,10 +1,11 @@
-<% if taxon %>
-  <h1><%= taxon.name %></h1>
-<% else %>
-  <div class="shop-nav-taxons">
-    <div class="shop-nav-taxons-scroller">
-      <% taxons.each do |t| %>
-        <%= link_to "/shop/#{t.permalink}", class: 'shop-nav-taxon' do %>
+<div class="shop-nav-taxons<%= ' shop-nav-taxons-selected' if taxon %>" data-scroll-target data-scroller-container>
+  <div data-scroller-left>
+    <span class="glyphicon glyphicon-menu-left"></span>
+  </div>
+  <div class="shop-nav-taxons-scroller" data-scroller>
+    <% taxons.each do |t| %>
+      <% if t.products.any? %>
+        <%= active_link_to "/shop/#{t.permalink}", class: 'shop-nav-taxon', data: { scroller_target: '' } do %>
           <% if name %>
             <div class="shop-nav-taxon-name">
               <%= t.name %>
@@ -13,7 +14,15 @@
           <%= image_tag t.icon(:normal_2x), alt: t.name %>
         <% end %>
       <% end %>
-    </div>
-    <div class="shop-nav-taxons-fade"></div>
+    <% end %>
+  </div>
+  <div data-scroller-right>
+    <span class="glyphicon glyphicon-menu-right"></span>
+  </div>
+</div>
+<% if taxon %>
+  <div class="shop-taxon-header container-fluid">
+    <h3><%= taxon.taxonomy.name %></h3>
+    <h1><%= taxon.name %></h1>
   </div>
 <% end %>

@@ -1,0 +1,24 @@
+<div class="checkout-confirm">
+  <div class="checkout-confirm-details">
+    <h4>Billing Address</h4>
+    <%= render 'spree/shared/address', address: @order.bill_address %>
+    <h4>Shipping Address</h4>
+    <% if @order.shipping_eq_billing_address? %>
+      Same as billing address
+    <% else %>
+      <%= render 'spree/shared/address', address: @order.ship_address %>
+    <% end %>
+    <h4>Payment</h4>
+    <% @order.payments.valid.each do |payment| %>
+      <% if payment.source.is_a?(Spree::CreditCard) %>
+        <%= cc_type_for payment.source %> ending in
+        <%= payment.source.last_digits %><br />
+        <%= payment.source.name %><br />
+        <%= payment.source.month %>/<%= payment.source.year %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="checkout-confirm-cart">
+    <%= render 'spree/shared/cart' %>
+  </div>
+</div>

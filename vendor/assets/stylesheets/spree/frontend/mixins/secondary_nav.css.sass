@@ -2,15 +2,18 @@ $secondary-nav-height: 65px
 
 %secondary-nav
   height: $secondary-nav-height
-  padding: 0 45px
   margin-top: -$secondary-nav-height
-  background: rgba(255, 255, 255, 0.8)
+  padding: 0 $window-padding
+  background: rgba(white, 0.9)
+  text-align: left
+  box-shadow: 0 -1px 0px rgba(black, 0.2), 0 -1px 0px rgba(black, 0.05) inset, 0 1px 0 rgba(white, 0.96) inset
 
   a
+    height: 65px
     position: relative
-    padding: 15px 20px
+    padding: 0 20px
     text-transform: uppercase
-    line-height: $secondary-nav-height - 30px
+    line-height: $secondary-nav-height
     font-weight: 500
     font-size: 16px
     color: black
@@ -18,6 +21,22 @@ $secondary-nav-height: 65px
     text-decoration: none
     transition: 0.15s
     float: left
+    touch-action: manipulation
+    opacity: 0.5
+
+    &[href], &.active
+      opacity: 1
+
+    &[href]:hover, &.active, &:active
+
+      .count
+        background: white
+
+    &:first-child
+      margin-left: -20px
+
+    &:last-child
+      margin-right: -20px
 
     &.active:after
       position: absolute
@@ -28,8 +47,79 @@ $secondary-nav-height: 65px
       border: 8px solid transparent
       border-bottom-color: white
 
+    .count
+      $secondary-nav-count-size: 20px
+      min-width: $secondary-nav-count-size
+      height: $secondary-nav-count-size
+      padding: 0 5px
+      margin-left: -25px
+      position: relative
+      top: -13px
+      display: inline-block
+      line-height: $secondary-nav-count-size - 1
+      border-radius: $secondary-nav-count-size / 2
+      background: $orange
+      font-size: 15px
+      color: white
+      text-align: center
+      transition: inherit
+      letter-spacing: -1px
+      font-weight: 400
+      // Use a different font than Lato because it has descenders on some numbers
+      // so you cannot vertically center it reliably.
+      font-family: "Helvetica Neue", Helvetica, Arial, sans-serif
+
+    .glyphicon
+      font-size: 18px
+      color: rgba(black, 0.6)
+      position: relative
+      top: 2px
+      transition: inherit
+
+  @media (max-width: $screen-xs-max)
+    padding: 0
+    text-align: center
+    display: table
+    width: 100%
+    table-layout: fixed
+
+    a
+      display: table-cell
+      padding: 10px 0
+      font-size: 12px
+      text-transform: none
+      font-weight: 500
+      float: none !important
+      line-height: normal
+
+      &.active:after
+        display: none
+
+      &:first-child, &:last-child
+        margin: 0
+
+      .glyphicon
+        margin-bottom: 5px
+        display: block
+        text-align: center
+        font-size: 24px
+
+      .count
+        margin-left: 4px
+        position: absolute
+        top: -7px
+        left: 50%
+
+  @media (min-width: $screen-md-min)
+
+    .glyphicon-shopping-cart
+      margin-right: -5px
+
 @mixin secondary-nav($color)
   @extend %secondary-nav
 
-  a[href]:hover, a.active
+  a[href]:hover, a.active, a:active
     color: $color
+
+    .glyphicon, .count
+      color: $color

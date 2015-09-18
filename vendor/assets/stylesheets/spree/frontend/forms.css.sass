@@ -1,0 +1,32 @@
+form
+
+  label
+    margin-bottom: 0
+    display: block
+
+  input, select
+    margin-top: 5px
+    border-radius: 3px
+
+    &:focus
+      outline: none
+
+  input[type="text"], input[type="email"], input[type="password"], input[type="tel"], select
+    width: 100%
+    font-size: 18px
+    padding: 5px 10px
+    border: 1px solid $border-color
+    transition: box-shadow 0.15s
+
+    &:focus
+      box-shadow: 0 1px 5px rgba(black, 0.05) inset
+
+  input[type="submit"]
+    width: 100%
+    +button($blue)
+
+  select
+    height: 37px
+  
+  .help-block
+    margin-top: 3px

@@ -2,10 +2,13 @@
 <div class="checkout-banner">
   <h1>Checkout</h1>
 </div>
-<%= render 'nav', { states: @order.checkout_steps, index: @order.checkout_steps.index(@order.state) } %>
-<div class="checkout">
-  <%= form_for @order, url: app_url_helpers.update_checkout_path(@order.state), html: { class: 'checkout-form' } do |form| %>
-    <%= form.hidden_field :state_lock_version %>
-    <%= render @order.state, form: form %>
-  <% end %>
+<div data-scroll-target>
+  <%= render 'nav', { states: @order.checkout_steps, index: @order.checkout_steps.index(@order.state) } %>
+  <div class="checkout container-fluid">
+    <%= form_for @order, url: app_url_helpers.update_checkout_path(@order.state), html: { class: 'checkout-form' } do |form| %>
+      <%= form.hidden_field :state_lock_version %>
+      <%# Spree::Order#before_payment fucks `@order.state` up so we need to rely on `params[:state]` %>
+      <%= render params[:state] || @order.state, form: form %>
+    <% end %>
+  </div>
 </div>

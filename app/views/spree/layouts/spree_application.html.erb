@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="<%= I18n.locale %>">
+  <head>
+    <%= render partial: 'spree/shared/head' %>
+  </head>
+  <body class="<%= body_class %>">
+    <%= render partial: 'spree/shared/google_analytics.js' %>
+    <div class="push-footer-down">
+      <%= render partial: 'spree/shared/header' %>
+      <%= yield %>
+    </div>
+    <%= render 'spree/shared/footer' %>
+  </body>
+</html>

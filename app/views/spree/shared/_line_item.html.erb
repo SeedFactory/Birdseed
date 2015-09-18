@@ -1,0 +1,39 @@
+<tr>
+  <td class="cart-item-image-column">
+    <%= link_to item.variant.product do %>
+      <% if item.variant.images.any? %>
+        <%= image_tag item.variant.images[0].attachment(:small), class: 'cart-item-image' %>
+      <% else %>
+        <%= small_image item.variant.product, class: 'cart-item-image' %>
+      <% end %>
+    <% end %>
+  </td>
+  <td>
+    <%= link_to item.variant.product do %>
+      <% if brand_name = brand(item.variant.product) %>
+        <div class="cart-item-brand">
+          <%= brand_name %>
+        </div>
+      <% end %>
+      <div class="cart-item-name">
+        <%= item.name %>
+        <% if item.variant.product.has_variants? %>
+          <div class="cart-item-variant"><%= option_values item.variant -%></div>
+        <% end %>
+      </div>
+    <% end %>
+  </td>
+  <td class="cart-items-numeric cart-item-price-column">
+    <%= item.single_money.to_html %>
+  </td>
+  <td class="cart-items-numeric">
+    <% if local_assigns[:form] %>
+      <%= form.select :quantity, 0..50 %>
+    <% else %>
+      <%= item.quantity %>
+    <% end %>
+  </td>
+  <td class="cart-items-numeric">
+    <%= item.display_amount.to_html %>
+  </td>
+</tr>

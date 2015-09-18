@@ -1,0 +1,16 @@
+$column-classes: ()
+@for $i from 2 through $grid-columns
+  @each $s in (xs sm md lg)
+    $column-classes: append($column-classes, ".col-#{$s}-#{$i}", "comma")
+
+#{$column-classes}
+  padding-left: $window-padding / 2
+  padding-right: $window-padding / 2
+
+.container-fluid
+  padding-left: $window-padding
+  padding-right: $window-padding
+
+.row
+  margin-left: -$window-padding / 2
+  margin-right: -$window-padding / 2

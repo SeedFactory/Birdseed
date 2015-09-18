@@ -1,0 +1,78 @@
+<div class="product container-fluid">
+  <div class="row">
+    <div class="product-header col-lg-6 col-md-5 col-md-offset-3">
+      <div class="product-brand">
+        <%= brand(@product) %>
+      </div>
+      <div class="product-name">
+        <%= @product.name %>
+      </div>
+    </div>
+    <div class="product-images col-md-3 col-md-pull-0 col-md-offset-0 col-sm-5">
+      <%= large_image @product, class: 'product-image' %>
+      <% if (@product.images + @product.variant_images).uniq.size > 1 %>
+        <div class="product-images-thumbnails">
+          <% (@product.images + @product.variant_images).uniq.each do |image| %>
+            <%= link_to image_tag(image.attachment.url(:mini)), image.attachment.url,
+              target: '_blank', data: { full_image: image.attachment.url } %>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <%= form_tag populate_orders_path, method: :post, class: 'product-form col-lg-3 col-lg-offset-9 col-md-4 col-md-offset-8 col-sm-5 col-sm-offset-2' do %>
+      <% if @product.variants_and_option_values.any? %>
+        <div class="product-variants form-group">
+          <label class="product-variants-label">Size</label>
+          <% @product.variants_and_option_values.each_with_index do |variant, index| %>
+            <label class="product-variant">
+              <%= radio_button_tag 'variant_id', variant.id, index == 0 %>
+              <div class="product-variant-name">
+                <%= option_values variant %>
+              </div>
+              <div class="product-variant-price">
+                <%= price variant %>
+              </div>
+            </label>
+          <% end %>
+        </div>
+      <% else %>
+        <%= hidden_field_tag 'variant_id', @product.master.id %>
+      <% end %>
+      <div class="product-quantity form-group">
+        <%= label_tag :quantity, 'Quantity' %>
+        <%= select_tag :quantity, options_for_select(1..10) %>
+      </div>
+      <div class="product-add">
+        <%= submit_tag 'Add To Cart' %>
+      </div>
+    <% end %>
+    <div class="product-info col-lg-6 col-md-pull-0 col-md-offset-3 col-md-5 col-sm-7 col-sm-pull-7 col-sm-offset-7">
+      <div class="product-properties">
+        <% @product_properties.each.with_index do |product_property, index| %>
+          <%# bootstrap collapse needs '.panel' %>
+          <div class="product-property panel">
+            <a class="product-property-name<%= ' collapsed' if index != 0 %>" data-parent=".product-properties" data-toggle="collapse" href="#product-property-<%= product_property.id %>">
+              <%= product_property.property.presentation %>
+              <span class="glyphicon glyphicon-triangle-left"></span>
+              <span class="glyphicon glyphicon-triangle-bottom"></span>
+            </a>
+            <div class="product-property-value collapse<%= ' in' if index == 0 %>" id="product-property-<%= product_property.id %>">
+              <% if format_property_value? product_property %>
+                <table>
+                  <% parse_property_value(product_property).each do |name, value| %>
+                    <tr>
+                      <th><%= name %></th>
+                      <td><%= value %></td>
+                    </tr>
+                  <% end %>
+                </table>
+              <% else %>
+                <%= product_property.value %>
+              <% end %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

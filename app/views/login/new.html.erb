@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <div class="login">
+    <h1>Login or Signup</h1>
+    <%= form_for @user, as: :spree_user, url: app_url_helpers.login_path, method: :post do |form| %>
+      <%= hidden_field :spree_user, :previous_email, value: @user.email %>
+      <%= form_group form, :email %>
+      <% if valid_email? %>
+        <div class="alert alert-info">
+          <% if @user.persisted? %>
+            <% if reset_password? %>
+              <p>
+                An email containing password reset instructions has been
+                sent to your email.
+              </p>
+            <% else %>
+              <p>
+                It looks like you've been here before!<br />
+                Please enter your password to continue.
+              </p>
+            <% end %>
+            <strong>
+              <span class="hide">
+                <%= submit_tag '', name: :not_reset_password %>
+              </span>
+              <%= submit_tag (reset_password? ? 'Send Again' :'Forgot Password?'), name: :reset_password %>
+            </strong>
+          <% else %>
+            It looks like you're new here, welcome!
+            Enter a password to create an account.
+          <% end %>
+        </div>
+        <%= form_group form, :password %>
+      <% end %>
+      <%= form.submit 'Continue' %>
+    <% end %>
+  </div>
+</div>

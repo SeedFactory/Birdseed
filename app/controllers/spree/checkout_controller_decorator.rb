@@ -30,6 +30,14 @@ Spree::CheckoutController.class_eval do
 
   private
 
+  # #before_payment calls Spree::Order#reload but #set_state_if_present set
+  # the state to 'payment' earlier without saving so we need to set it again.
+  def before_payment_with_set_state
+    before_payment_without_set_state
+    @order.state = 'payment'
+  end
+  alias_method_chain :before_payment, :set_state
+
   def sign_in_and_associate
     sign_in(:spree_user, @user)
     associate_user

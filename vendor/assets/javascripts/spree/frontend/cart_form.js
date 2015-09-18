@@ -1,3 +1,3 @@
-$(document).on('change', 'form.cart select', function() {
-  $(this).closest('form').submit();
+$(document).on("change", "form.cart", function() {
+  $(this).submit();
 });

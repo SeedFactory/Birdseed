@@ -1,21 +1,21 @@
 (function() {
 
 function isChecked() {
-  return $('#order_use_billing').is(':checked');
+  return $('.checkout-address-use-billing').is(':checked');
 }
 
 function fadeShippingAddress() {
   var action = isChecked() ? 'slideUp' : 'slideDown';
-  $('#shipping_address_fields')[action](250);
+  $('.checkout-address-shipping-fields')[action](250);
 }
 
 function hideShippingAddress() {
   if(isChecked()) {
-    $('#shipping_address_fields').hide();
+    $('.checkout-address-shipping-fields').hide();
   }
 }
 
-$(document).on('change', '#order_use_billing', fadeShippingAddress);
-$(hideShippingAddress);
+$(document).on('change', '.checkout-address-use-billing', fadeShippingAddress);
+$(document).on('page:change', hideShippingAddress);
 
 })();

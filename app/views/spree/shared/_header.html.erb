@@ -1,4 +1,4 @@
-<header class="birdseed-header">
+<header class="birdseed-header container-fluid">
   <h1 class="birdseed-logo">
     <%= link_to :root do %>
       <%= image_tag 'logo-white.png', class: 'birdseed-logo-white' %>
@@ -16,4 +16,8 @@
       <%= link_to 'Login', login_path %>
     <% end %>
   </nav>
+  <a href="" class="birdseed-nav-toggle">
+    <span class="birdseed-nav-toggle-icon-bar"></span>
+    <span class="birdseed-nav-toggle-icon-bar"></span>
+  </a>
 </header>
