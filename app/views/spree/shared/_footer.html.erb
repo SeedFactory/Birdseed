@@ -9,14 +9,19 @@
       </div>
       <div class="col-md-3 col-sm-6 col-xs-12 footer-column">
         <div class="footer-header">Links</div>
-        <%= link_to 'FAQ', app_url_helpers.faq_path %>
+        <%#= link_to 'FAQ', app_url_helpers.faq_path %>
         <%= link_to 'About', app_url_helpers.about_path %>
         <%= link_to 'Talk To Us', app_url_helpers.talk_to_us_path %>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-12 footer-column">
         <div class="footer-header">Account</div>
-        <%= link_to 'Login', login_path %>
-        <%= link_to 'Signup', login_path %>
+        <% if spree_current_user %>
+          <%#= link_to 'Orders', app_url_helpers.orders_path %>
+          <%= link_to 'Logout', logout_path %>
+        <% else %>
+          <%= link_to 'Login', login_path %>
+          <%= link_to 'Signup', login_path %>
+        <% end %>
       </div>
       <div class="col-md-3 col-sm-6 col-xs-12 footer-column">
         <div class="footer-header">Contact</div>

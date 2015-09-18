@@ -1,0 +1,10 @@
+<div class="container-fluid">
+  <div class="login">
+    <h1>Reset Password</h1>
+    <%= form_for @spree_user, as: :spree_user, url: spree.update_password_path, method: :put do |form| %>
+      <%= form_group form, :password %>
+      <%= form.hidden_field :reset_password_token %>
+      <%= form.submit 'Reset' %>
+    <% end %>    
+  </div>
+</div>

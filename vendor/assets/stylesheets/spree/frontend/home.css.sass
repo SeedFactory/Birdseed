@@ -1,9 +1,6 @@
 .home-banner
   height: 82.5vh
-  background-image: image-url("banners/green_feathers.jpg")
-
-  h1, a
-    position: absolute
+  background-image: image-url("banners/green_feathers")
 
   h1
     margin-bottom: 10px
@@ -16,6 +13,7 @@
     +button($purple)
     width: 170px
     margin: 10px 0 0 -85px
+    position: absolute
     top: 40vh
     left: 50vw
     letter-spacing: 2px
@@ -72,12 +70,12 @@
 .featured-item-type
   +small-caps
   padding: 1px 4px
-  margin: 0 0 10px -2px
+  margin: 0 0 10px -4px
   display: inline-block
   border-radius: 3px
 
   .featured-item:hover &
-    margin-left: 2px
+    margin-left: 0
     background: $purple
     color: white
 

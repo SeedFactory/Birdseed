@@ -84,17 +84,21 @@ fetchReplacement = (url, options) ->
     complete: (xhr) ->
       triggerEvent EVENTS.RECEIVE, url: url.absolute
       progressBar?.done()
-      if xhr.getResponseHeader('Content-Type').indexOf('javascript') is -1
-        if doc = processResponse(xhr)
-          reflectNewUrl url
-          reflectRedirectedUrl()
-          loadedNodes = changePage extractTitleAndBody(doc)..., options
-          manuallyTriggerHashChangeForFirefox()
-          updateScrollPosition(options.scroll)
-          triggerEvent (if options.change then EVENTS.PARTIAL_LOAD else EVENTS.LOAD), loadedNodes
-          constrainPageCacheTo(cacheSize)
-        else
-          document.location.href = crossOriginRedirect() or url.absolute
+      contentType = xhr.getResponseHeader('Content-Type')
+      if contentType
+        if contentType.indexOf('javascript') is -1
+          if doc = processResponse(xhr)
+            reflectNewUrl url
+            reflectRedirectedUrl()
+            loadedNodes = changePage extractTitleAndBody(doc)..., options
+            manuallyTriggerHashChangeForFirefox()
+            updateScrollPosition(options.scroll)
+            triggerEvent (if options.change then EVENTS.PARTIAL_LOAD else EVENTS.LOAD), loadedNodes
+            constrainPageCacheTo(cacheSize)
+          else
+            document.location.href = crossOriginRedirect() or url.absolute
+      else
+        visit '/'
 
 fetchHistory = (cachedPage, options = {}) ->
   xhr?.abort()

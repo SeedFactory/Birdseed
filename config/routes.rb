@@ -11,6 +11,8 @@ Rails.application.routes.draw do
 
   patch '/checkout/:state' => 'spree/checkout#update', :as => :update_checkout
 
+  get '/orders' => 'orders#index'
+
   get '/login' => 'login#new', as: :login
   post '/login' => 'login#create'
 
