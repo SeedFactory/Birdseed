@@ -8,7 +8,7 @@
     <span class="glyphicon glyphicon-menu-left"></span>
   </div>
   <div class="featured-scroller" data-scroller>
-    <%= link_to '/', class: 'featured-item', data: { scroller_target: '' } do %>
+    <%= link_to app_url_helpers.shop_brands_path('versele-laga'), class: 'featured-item', data: { scroller_target: '' } do %>
       <div class="featured-item-image">
         <%= image_tag 'featured/versele-laga.png' %>
       </div>
@@ -23,7 +23,7 @@
         </div>
       </div>
     <% end %>
-    <%= link_to '/', class: 'featured-item', data: { scroller_target: '' } do %>
+    <%= link_to app_url_helpers.about_path, class: 'featured-item', data: { scroller_target: '' } do %>
       <div class="featured-item-image">
         <%= image_tag 'featured/new_website.png' %>
       </div>
@@ -37,7 +37,7 @@
         </div>
       </div>
     <% end %>
-    <%= link_to '/', class: 'featured-item', data: { scroller_target: '' } do %>
+    <%= link_to app_url_helpers.shop_brands_path('avian-science'), class: 'featured-item', data: { scroller_target: '' } do %>
       <div class="featured-item-image">
         <%= image_tag 'featured/volkman_redesign.png' %>
       </div>

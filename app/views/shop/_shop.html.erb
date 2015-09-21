@@ -42,7 +42,11 @@
             <div class="col-lg-3 col-md-4 col-sm-6">
               <div class="shop-product">
                 <%= link_to product do %>
-                  <div class="shop-product-image" style="background-image: url(<%= product.images.first.attachment(:large) %>);"></div>
+                  <% if product.images.first %>
+                    <div class="shop-product-image" style="background-image: url(<%= product.images.first.attachment(:large) %>);"></div>
+                  <% else %>
+                    <div class="shop-product-image" style="background-color: #DDD;"></div>
+                  <% end %>
                   <% if brand_name = brand(product) %>
                     <div class="shop-product-brand">
                       <%= brand_name %>
@@ -52,29 +56,6 @@
                     <%= truncate(product.name, length: 50) %>
                   </div>
                 <% end %>
-<%
-=begin %>
-                <div class="shop-product-variants">
-                  <% product.variants_and_option_values.each do |variant| %>
-                    <%= form_tag populate_orders_path, method: :post do %>
-                      <%= hidden_field_tag :variant_id, variant.id %>
-                      <%= hidden_field_tag :quantity, 1 %>
-                      <button type="submit" class="shop-product-variant">
-                        <div class="shop-product-variant-name">
-                          <%= option_values variant %>
-                        </div>
-                        <div class="shop-product-variant-price">
-                          <%= price variant %>
-                        </div>
-                        <div class="shop-product-variant-add">
-                          Add To Cart
-                        </div>
-                      </button>
-                    <% end %>
-                  <% end %>
-                </div>
-<%
-=end %>
               </div>
             </div>
           <% end %>

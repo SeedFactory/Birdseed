@@ -15,14 +15,60 @@ task import: :environment do
     'petamine' => 'petamine',
     'pigeon' => nil,
     'loft' => nil,
-    'bedding' => nil
+    'bedding' => nil,
+    'henny penny' => 'henny-penny',
+    'oropharma' => 'oropharma',
+    'colombine' => 'colombine',
+    'versele-laga' => 'versele-laga',
+    'orlux' => 'orlux'
   }
   def brands_for str
+    str = str.downcase
     raise "Could not find brand for '#{str}'" unless @brand_mappings.key?(str)
     taxon = @brand_mappings[str]
     return [] if taxon.nil?
     return taxon if taxon.is_a?(Array)
     @brand_mappings[str] = [Spree::Taxon.friendly.find("brands/#{taxon}")]
+  end
+
+  @bird_mappings = {
+    'canary' => 'canary',
+    'wildbird' => 'wild-bird',
+    'finch' => 'finch',
+    'parakeet' => 'parakeet',
+    'cockatiel' => 'cockatiel',
+    'lovebird' => 'lovebird',
+    'small_parrot' => nil,
+    'eclectus' => 'eclectus',
+    'hookbill' => 'hookbill',
+    'conure' => 'conure',
+    'macaw' => 'macaw',
+    'parrot' => 'parrot',
+    'parrotlet' => 'parrotlet',
+    'dove' => 'wild-bird',
+    'quail' => 'wild-bird',
+    'guinea_pig' => 'small-animals',
+    'hamster' => 'small-animals',
+    'rodent' => 'small-animals',
+    'small_hookbill' => nil,
+    'large_parrot' => nil,
+    'rabbit' => 'small-animals',
+    'mouse' => 'small-animals',
+    'squirrel' => 'small-animals',
+    'large_hookbill' => nil,
+    'chicken' => 'chicken',
+    'african_grey' => 'african-grey-parrot',
+    'amazon_parrot' => 'amazon-parrot',
+    'pigeon' => 'pigeon',
+    'lorikeet' => nil
+  }
+  def birds_for strs
+    (strs || '').downcase.split.map do |str|
+      raise "Could not find bird for '#{str}'" unless @bird_mappings.key?(str)
+      bird = @bird_mappings[str]
+      next bird if bird.is_a?(Spree::Taxon) || bird.nil?
+      @bird_mappings[str] = Spree::Taxon.friendly.find("birds/#{bird}")
+    end.compact.uniq
   end
 
   def property_for name, presentation
@@ -94,10 +140,10 @@ task import: :environment do
             sku: (has_variants ? '' : master[:product_code]),
             name: master[:item_name],
             description: master[:item_description],
-            taxons: brands_for(master[:category]),
+            taxons: (brands_for(master[:category]) + birds_for(master[:usage])),
             option_types: (has_variants ? [@option_types[:size]] : []),
             available_on: Time.now,
-            price: 1,
+            price: master[:pricing_schedule],
             shipping_category: shipping,
             product_properties: [
               product_property_for(:directions, master[:directions]),
@@ -109,15 +155,18 @@ task import: :environment do
         if has_variants && !ENV['skip_variants']
           product.update!(variants: variants.map do |variant|
             weight = normalize_weight(variant[:weight])
-            Spree::Variant.create!(
-              sku: variant[:product_code],
+            record = Spree::Variant.find_or_initialize_by(
+              sku: variant[:product_code])
+            record.update!(
               product: product,
+              price: variant[:pricing_schedule],
               option_values: [
                 Spree::OptionValue
                   .where(option_type: @option_types[:size], name: weight)
                   .create_with(presentation: weight)
                   .first_or_create!
               ])
+            record
           end)
         end
         unless ENV['skip_images']
