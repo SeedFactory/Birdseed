@@ -1,6 +1,7 @@
-worker_processes Integer(ENV['WEB_CONCURRENCY'] || 3)
+worker_processes ENV['WEB_CONCURRENCY'].to_i
 timeout 15
 preload_app true
+listen ENV['PORT'].to_i
 
 before_fork do |server, worker|
   Signal.trap 'TERM' do
