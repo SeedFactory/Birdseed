@@ -3,18 +3,20 @@
     <span class="glyphicon glyphicon-menu-left"></span>
   </div>
   <div class="shop-nav-taxons-scroller" data-scroller>
-    <% taxons.each do |t| %>
-      <% if t.products.any? %>
-        <%= active_link_to "/shop/#{t.permalink}", class: 'shop-nav-taxon', data: { scroller_target: '' } do %>
-          <% if name %>
+    <% taxons.each do |taxon| %>
+      <% if taxon.products.any? %>
+        <%= active_link_to "/shop/#{taxon.permalink}", class: 'shop-nav-taxon', data: { scroller_target: '' } do %>
+          <% if type == 'bird' %>
             <div class="shop-nav-taxon-name">
-              <%= t.name %>
+              <%= taxon.name %>
             </div>
           <% end %>
-          <%= image_tag t.icon(:normal_2x), alt: t.name %>
+          <%= responsive_image_tag taxon.icon, :normal, :normal_2x, alt: taxon.name,
+            class: ('needs-border' if type == 'brand' && taxon.needs_border?) %>
         <% end %>
       <% end %>
     <% end %>
+    <%= render 'spree/shared/responsive_image_styles' %>
   </div>
   <div data-scroller-right>
     <span class="glyphicon glyphicon-menu-right"></span>
@@ -24,5 +26,13 @@
   <div class="shop-taxon-header container-fluid">
     <h3><%= taxon.taxonomy.name %></h3>
     <h1><%= taxon.name %></h1>
+  </div>
+<% else %>
+  <div class="shop-taxon-empty container-fluid">
+    Select a
+    <span class="shop-taxon-type">
+      <%= type %>
+    </span>
+    from above
   </div>
 <% end %>

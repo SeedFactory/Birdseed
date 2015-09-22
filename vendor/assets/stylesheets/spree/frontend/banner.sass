@@ -1,0 +1,39 @@
+@mixin banners($size)
+
+  .home-banner
+    background-image: image-url("banners/green_feathers_#{$size}")
+
+  .shop-banner
+    background-image: image-url("banners/blue_feathers_#{$size}")
+
+  .checkout-banner
+    background-image: image-url("banners/orange_feathers_#{$size}")
+
++banners(625)
+
+$sizes: (1250 2500 5000)
+$ratios: (1 1.5 2)
+@each $size in $sizes
+  @each $ratio in $ratios
+    @media (min-width: $size / $ratio * 1px) and (min-resolution: $ratio * 72dpi), (min-height: $size / $ratio * 0.5px) and (min-resolution: $ratio * 72dpi)
+      +banners($size)
+
+.home-banner,
+.shop-banner,
+.checkout-banner
+  height: 40vh
+  min-height: 200px
+  background-size: cover
+  background-position: center
+  text-align: center
+
+  h1
+    width: 100%
+    position: absolute
+    top: 15vh
+    font-size: 42px
+    letter-spacing: 5px
+    font-weight: 300
+    text-shadow: 0 1px 5px rgba(0, 0, 0, 0.65)
+    color: white
+    text-transform: uppercase

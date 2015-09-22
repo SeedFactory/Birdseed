@@ -1,0 +1,228 @@
+.checkout-banner
+  height: 40vh
+
+.checkout-banner h1
+  top: 15%
+
+.checkout-nav
+  +secondary_nav($blue)
+
+.checkout-register
+  width: 100%
+  max-width: 600px
+  margin: 0 auto
+
+.checkout
+  padding-top: 30px
+  padding-bottom: 100px
+
+  form label
+    a, a:hover, :active
+      color: $blue
+
+.checkout-address
+  
+  h1
+    margin: 0 0 30px 0
+
+.checkout-address-type
+  margin-bottom: 30px
+
+.checkout-address-use-billing-label
+  margin-bottom: 20px
+
+.checkout-actions
+  text-align: center
+
+  label, input
+    display: inline-block
+
+  label
+    margin-right: 20px
+
+  input
+    max-width: 300px
+
+  @media (max-width: $screen-xs-max)
+    text-align: left
+
+    input
+      max-width: none
+
+    input[type="checkbox"]
+      margin-bottom: 20px
+
+.checkout-address-city-state
+  display: table
+  table-layout: fixed
+
+.checkout-address-city,
+.checkout-address-state
+  display: table-cell
+
+.checkout-address-city
+  width: 100%
+  padding-right: 20px
+
+.checkout-address-state
+  min-width: 70px
+
+.checkout-payment
+
+  h3
+    margin: 10px 0 20px 0
+
+.checkout-payment-expiration-separator:before
+  width: 40px
+  content: '/'
+  position: absolute
+  top: 25px
+  left: 50%
+  text-align: center
+  margin-left: -20px
+  font-size: 21px
+  color: #888
+
+.checkout-payment-saved-cards
+  
+  label
+    margin-bottom: 0
+    position: relative
+    border-top: 1px solid $border-color
+    cursor: pointer
+    font-size: 14px
+    font-weight: 400
+    letter-spacing: 0
+    color: black
+    text-transform: none
+  
+  input
+    position: absolute
+    top: 9px
+    left: 15px
+
+.checkout-payment-new-card
+  margin-bottom: 30px
+
+.checkout-payment-saved-cards-header,
+.checkout-payment-saved-cards-row
+  +clearfix
+
+.checkout-payment-saved-cards-header
+  +small-caps
+
+  @media (max-width: $screen-xs-max)
+    .checkout-payment-saved-cards-name,
+    .checkout-payment-saved-cards-expiration
+      display: none
+
+.checkout-payment-saved-cards-name,
+.checkout-payment-saved-cards-number,
+.checkout-payment-saved-cards-expiration,
+.checkout-payment-saved-cards-add
+  padding: 10px 0
+
+.checkout-payment-saved-cards-name,
+.checkout-payment-saved-cards-number,
+.checkout-payment-saved-cards-expiration,
+  float: left
+
+  @media (max-width: $screen-xs-max)
+    float: none
+
+  label:hover &
+    background: $row-hover-background-color
+
+  input:checked ~ &, label:active &
+    background: $row-active-background-color
+
+.checkout-payment-saved-cards-add
+  width: 100%
+  padding-bottom: 20px
+  +small-caps
+  color: $blue !important
+  line-height: 22px
+
+  label:hover &
+    background: linear-gradient(to bottom, $row-hover-background-color, rgba($row-hover-background-color, 0))
+
+  input:checked ~ &, label:active &
+    background: linear-gradient(to bottom, $row-active-background-color, rgba($row-active-background-color, 0))
+
+.checkout-payment-saved-cards-number
+  width: 35%
+
+.checkout-payment-saved-cards-row .checkout-payment-saved-cards-number,
+.checkout-payment-saved-cards-add
+  padding-left: 40px
+
+.checkout-payment-saved-cards-name
+  width: 50%
+
+.checkout-payment-saved-cards-expiration
+  width: 15%
+
+@media (max-width: $screen-xs-max)
+  
+  .checkout-payment-saved-cards-name,
+  .checkout-payment-saved-cards-number,
+  .checkout-payment-saved-cards-expiration
+    width: auto
+
+  .checkout-payment-saved-cards-row
+
+    .checkout-payment-saved-cards-name,
+    .checkout-payment-saved-cards-expiration
+      padding-left: 40px
+
+    .checkout-payment-saved-cards-number,
+    .checkout-payment-saved-cards-name
+      padding-bottom: 0
+
+    .checkout-payment-saved-cards-name,
+    .checkout-payment-saved-cards-expiration
+      padding-top: 0
+
+    .checkout-payment-saved-cards-number
+      font-size: 18px
+
+    .checkout-payment-saved-cards-expiration
+      color: $light-text-color
+
+.checkout-confirm
+  width: 100%
+  display: table
+
+  h1
+    margin: 0
+
+  h4
+    margin: 30px 0 10px 0
+
+.checkout-confirm-details,
+.checkout-confirm-cart
+  display: table-cell
+
+.checkout-confirm-cart
+  width: 100%
+
+.checkout-confirm-details
+  white-space: nowrap
+  padding-right: $window-padding
+
+@media (max-width: $screen-xs-max)
+  
+  .checkout-confirm
+    display: block
+
+  .checkout-confirm-details,
+  .checkout-confirm-cart
+    display: block
+
+  .checkout-confirm-details
+    width: auto
+    white-space: normal
+    padding-right: 0
+
+  .checkout-confirm-cart
+    margin-top: 30px

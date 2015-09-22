@@ -15,7 +15,9 @@
       <div class="col-md-3 col-sm-6 col-xs-12 footer-column">
         <div class="footer-header">Account</div>
         <% if spree_current_user %>
-          <%= link_to 'Orders', app_url_helpers.orders_path %>
+          <% if spree_current_user.orders.complete.any? %>
+            <%= link_to 'Orders', app_url_helpers.orders_path %>
+          <% end %>
           <%= link_to 'Logout', logout_path %>
         <% else %>
           <%= link_to 'Login', login_path %>

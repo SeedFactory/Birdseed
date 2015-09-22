@@ -19,6 +19,8 @@ group :development, :test do
   gem 'rack-livereload'
   gem 'letter_opener'
   gem 'dotenv-rails'
+  gem 'quiet_assets'
+  gem 'better_errors'
 end
 
 group :production do
@@ -33,3 +35,4 @@ gem 'spree_gateway', github: 'spree/spree_gateway', branch: '3-0-stable'
 gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '3-0-stable'
 
 gem 'active_link_to'
+gem 'rmagick'

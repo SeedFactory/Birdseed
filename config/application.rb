@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module Birdseed
   class Application < Rails::Application
+
+    config.time_zone = 'Pacific Time (US & Canada)'
     
     config.to_prepare do
       # Load application's model / class decorators

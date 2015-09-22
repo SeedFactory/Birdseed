@@ -17,32 +17,3 @@ Spree.config do |config|
 end
 
 Spree.user_class = "Spree::User"
-
-paperclip_options = if Rails.env.production?
-  {
-    storage: :s3,
-    s3_credentials: {
-      bucket: 'birdseed',
-      access_key_id: ENV['AWS_ACCESS_KEY_ID'],
-      secret_access_key: ENV['AWS_SECRET_ACCESS_KEY']
-    },
-    s3_protocol: 'https',
-    url: ':s3_domain_url',
-    path: '/:class/:id/:style.:extension'
-  }
-else
-  {
-    path: ':rails_root/public:url',
-    url: '/:class/:id/:style.:extension'
-  }
-end
-
-product_settings = Spree::Image.attachment_definitions[:attachment]
-taxon_settings = Spree::Taxon.attachment_definitions[:icon]
-
-product_settings
-  .merge!(paperclip_options)
-taxon_settings
-  .merge!(paperclip_options)
-  .merge!(styles: { normal: '100x167>', normal_2x: '200x333>' },
-    default_style: :normal)

@@ -40,25 +40,27 @@
         <div class="shop-products-list row">
           <% @products.each do |product| %>
             <div class="col-lg-3 col-md-4 col-sm-6">
-              <div class="shop-product">
-                <%= link_to product do %>
+              <div class="shop-product" itemscope itemtype="https://schema.org/Product">
+                <%= link_to product, itemprop: 'url' do %>
                   <% if product.images.first %>
-                    <div class="shop-product-image" style="background-image: url(<%= product.images.first.attachment(:large) %>);"></div>
+                    <%= responsive_image_tag product.images.first.attachment, :product, :large,
+                      class: 'shop-product-image', itemprop: 'image' %>
                   <% else %>
                     <div class="shop-product-image" style="background-color: #DDD;"></div>
                   <% end %>
-                  <% if brand_name = brand(product) %>
-                    <div class="shop-product-brand">
-                      <%= brand_name %>
+                  <% if product.brand %>
+                    <div class="shop-product-brand" itemprop="brand">
+                      <%= product.brand.name %>
                     </div>
                   <% end %>
-                  <div class="shop-product-name">
+                  <div class="shop-product-name" itemprop="name" title="<%= product.name %>">
                     <%= truncate(product.name, length: 50) %>
                   </div>
                 <% end %>
               </div>
             </div>
           <% end %>
+          <%= render 'spree/shared/responsive_image_styles' %>
         </div>
       <% else %>
         <div class="shop-products-empty">

@@ -1,0 +1,183 @@
+.shop-nav
+  @include secondary_nav($orange)
+
+.shop-search
+  padding-top: 30px
+  padding-bottom: 30px
+
+  h1
+    margin: 0 0 10px 0
+
+.shop-nav-filters input
+  border-radius: 3px
+  font-size: 16px
+
+  &:focus
+    outline: none
+
+.shop-nav-filters input[type="text"]
+  padding: 9px 10px
+  border: 1px #CCC solid
+
+.shop-nav-filters input[type="submit"]
+  +button($orange)
+
+.shop-nav-taxons
+  position: relative
+
+.shop-nav-taxons-scroller
+  padding: 30px $window-padding 60px
+  font-size: 0
+
+.shop-nav-taxon
+  width: 100px
+  height: 167px
+  margin: 0 10px 0 0
+  position: relative
+  display: inline-block
+  background: #CCC
+  color: white
+  font-weight: 500
+  font-size: 16px
+  text-shadow: 0 1px 1px rgba(black, 0.5)
+  white-space: normal
+
+  &:hover
+    color: white
+
+  .shop-nav-taxons-selected &:not(.active)
+    opacity: 0.4
+    transition: opacity 0.15s
+
+    &:hover
+      opacity: 1
+
+.shop-nav-taxon figure
+  width: 100%
+  height: 100%
+  background-size: cover
+
+  &.needs-border
+    border: 1px solid $border-color
+
+.shop-nav-taxon-name
+  padding: 5px 10px
+  position: absolute
+  bottom: 0
+  left: 0
+
+.shop-taxon-header
+    
+  h3
+    margin: 0
+
+  h1
+    margin: 0 0 30px 0
+
+.shop-taxon-empty
+  font-weight: 300
+  font-size: 24px
+  color: $light-text-color
+
+.shop-taxon-type
+  text-transform: uppercase
+  color: #888
+
+.shop-products-empty
+  margin-bottom: 50px
+  padding: 50px 0
+  border: 1px solid $row-active-background-color
+  border-radius: 3px
+  color: $light-text-color
+  text-align: center
+  font-size: 28px
+  text-transform: uppercase
+  letter-spacing: 1px
+
+.shop-products-list
+  padding-bottom: 100px
+
+.shop-product
+  margin: 0 0 20px
+  position: relative
+  color: black
+  overflow: hidden
+
+.shop-product-image
+  width: 100%
+  height: 29vw
+  background-size: contain
+  background-position: center
+  background-repeat: no-repeat
+
+  @media (min-width: $screen-lg-min)
+    height: 20vw
+
+  @media (max-width: $screen-sm-max)
+    height: 46vw
+
+.shop-product-name
+  margin: 15px 0
+  font-size: 24px
+  overflow-x: hidden
+  text-overflow: ellipsis
+  white-space: nowrap
+  transition: color 0.1s
+
+  .shop-product a:hover &
+    color: $orange
+
+.shop-product-brand
+  margin: 10px 0 -15px 0
+  color: $light-text-color
+
+.shop-product-variant
+  width: 100%
+  padding: 0 0 0 10px
+  border: 0
+  border-top: 1px solid $border-color
+  background: none
+  font-size: 16px
+  position: relative
+  line-height: 35px
+  cursor: pointer
+  text-align: left
+  outline: none
+
+  &:hover
+
+    .shop-product-variant-price
+      opacity: 0
+
+    .shop-product-variant-add
+      opacity: 1
+      right: 10px
+
+    .shop-product-variant-name
+      color: $orange
+
+  &:active
+    background: $row-active-background-color
+
+.shop-product-variant-price,
+.shop-product-variant-add
+  position: absolute
+  top: 0
+
+.shop-product-variant-price,
+.shop-product-variant-add,
+.shop-product-variant-name
+  transition: all 0.1s
+
+.shop-product-variant-price
+  right: 10px
+
+.shop-product-variant-add
+  +small-caps
+  right: 20px
+  opacity: 0
+
+.shop-product-price
+  font-weight: 600
+  font-size: 18px
+  color: #888

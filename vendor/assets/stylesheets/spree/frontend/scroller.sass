@@ -1,0 +1,65 @@
+[data-scroller-container]
+  overflow: hidden
+
+[data-scroller]
+  padding-bottom: 30px
+  margin-bottom: -30px
+  white-space: nowrap
+  overflow-x: auto
+  overflow-y: hidden
+  -webkit-overflow-scrolling: touch
+
+  &::-webkit-scrollbar
+    display: none
+
+[data-scroller-left],
+[data-scroller-right]
+  height: 100%
+  width: $window-padding
+  position: absolute
+  top: 0
+  transition: opacity 0.15s
+  cursor: pointer
+  +z(scroller-control)
+
+  &:hover .glyphicon
+    color: black
+
+  .glyphicon
+    height: 20px
+    line-height: 20px
+    position: absolute
+    top: 50%
+    margin-top: -10px
+    font-size: 42px
+    line-height: 20px
+    color: $light-text-color
+    transition: all 0.15s
+
+[data-scroller-right]
+  right: 0
+  background: linear-gradient(to right, rgba(white, 0), white)
+
+  [data-scroller-container][data-scroller-direction="left"] &,
+  [data-scroller-container][data-scroller-direction="none"] &
+    opacity: 0
+
+  &:hover .glyphicon
+    right: 20px
+
+  .glyphicon
+    right: 10px
+
+[data-scroller-left]
+  left: 0
+  background: linear-gradient(to left, rgba(white, 0), white)
+
+  [data-scroller-container][data-scroller-direction="right"] &,
+  [data-scroller-container][data-scroller-direction="none"] &
+    opacity: 0
+
+  &:hover .glyphicon
+    left: 20px
+
+  .glyphicon
+    left: 10px

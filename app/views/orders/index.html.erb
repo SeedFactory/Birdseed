@@ -1,15 +1,31 @@
-<div class="container-fluid">
+<div class="container-fluid orders">
   <h1>Orders</h1>
-  <table>
-    <tr>
-      <th>Date</th>
-      <th>Payment State</th>
-      <th>Shipment State</th>
-    </tr>
-    <% @orders.each do |order| %>
-      <tr>
-        <%= order. %>
-      </tr>
+  <div class="orders-list">
+    <div class="orders-list-headers">
+      <span class="orders-number-column">Order</span>
+      <span class="orders-date-column">Date</span>
+      <span class="orders-total-column">Total</span>
+      <span class="orders-status-column">Status</span>
+      <span class="orders-action-column"></span>
+    </div>
+    <% @orders.order(completed_at: :desc).each do |order| %>
+      <%= link_to order, class: 'orders-list-row' do %>
+        <span class="orders-number-column">
+          <%= order.number %>
+        </span>
+        <span class="orders-date-column">
+          <%= order.completed_at.strftime('%B %-d, %Y') %>
+        </span>
+        <span class="orders-total-column">
+          <%= Spree::Money.new(order.total).to_html %>
+        </span>
+        <span class="orders-status-column">
+          <%= order.shipment_state.titleize %>
+        </span>
+        <span class="orders-action-column">
+          <strong>View</strong>
+        </span>
+      <% end %>
     <% end %>
-  </table>
+  </div>
 </div>

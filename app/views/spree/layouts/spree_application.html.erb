@@ -1,9 +1,10 @@
 <!doctype html>
 <html lang="<%= I18n.locale %>">
   <head>
+    <%= javascript_include_tag 'erb_refresh' if Rails.env.development? %>
     <%= render partial: 'spree/shared/head' %>
   </head>
-  <body class="<%= body_class %>">
+  <body<%== " class='#{@body_class}'" if @body_class %>>
     <%= render partial: 'spree/shared/google_analytics.js' %>
     <div class="push-footer-down">
       <%= render partial: 'spree/shared/header' %>

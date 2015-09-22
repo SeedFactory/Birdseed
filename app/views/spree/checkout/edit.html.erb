@@ -1,4 +1,11 @@
 <% @body_class = 'birdseed-header-inverse' %>
+<% content_for :google_analytics do %>
+  <%= render partial: 'spree/shared/google_checkout.js',
+    locals: {
+      order: @order,
+      step_number: (@order.checkout_steps.index(@order.state) + 1) 
+  } %>
+<% end %>
 <div class="checkout-banner">
   <h1>Checkout</h1>
 </div>

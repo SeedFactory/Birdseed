@@ -1,9 +1,27 @@
+<% content_for :google_analytics do %>
+  <% if order_just_completed?(@order) %>
+    <%= render partial: 'spree/shared/google_purchase.js', locals: { order: @order } %>
+  <% end %>
+<% end %>
 <div class="order">
   <div class="container-fluid">
-    <h1>Order <%= @order.number %></h1>
-    <div class="alert alert-info">
-      <strong>Thank you for your purchase!</strong>
-      Please print out this page for your records.
+    <div class="row">
+      <div class="col-md-4">
+        <h1 class="order-title">
+          Order
+        </h1>
+        <h3 class="order-number">
+          <%= @order.number %>
+        </h3>
+      </div>
+      <div class="col-md-8">
+        <% if order_just_completed?(@order) %>
+          <div class="alert alert-info">
+            <strong>Thank you for your purchase!</strong>
+            Please print out this page for your records.
+          </div>
+        <% end %>
+      </div>
     </div>
     <%= render 'spree/shared/order' %>
   </div>

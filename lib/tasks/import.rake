@@ -111,6 +111,14 @@ task import: :environment do
       Spree::Product.new(sku: sku)
   end
 
+  def option_value_for weight
+    weight = normalize_weight(weight)
+    Spree::OptionValue
+      .where(option_type: @option_types[:size], name: weight)
+      .create_with(presentation: weight)
+      .first_or_create!
+  end
+
   def normalize_weight weight
     number = weight[/\./] ? weight.to_f : weight.to_i
     case weight.downcase
@@ -118,7 +126,10 @@ task import: :environment do
     when /#|lb/  then "#{number} pounds"
     when /caps/  then "#{number} caps"
     when /pills/ then "#{number} pills"
-    else raise "Could not normalize weight: '#{weight}'"
+    when /tabs/  then "#{number} tabs"
+    when /ml/    then "#{number}mL"
+    when /l/     then "#{number}L"
+    else byebug; raise "Could not normalize weight: '#{weight}'"
     end
   end
 
@@ -135,41 +146,36 @@ task import: :environment do
         master = variants.first
         has_variants = variants.length > 1
         product = product_for(master[:product_code])
-        unless ENV['skip_product']
-          product.update!(
-            sku: (has_variants ? '' : master[:product_code]),
-            name: master[:item_name],
-            description: master[:item_description],
-            taxons: (brands_for(master[:category]) + birds_for(master[:usage])),
-            option_types: (has_variants ? [@option_types[:size]] : []),
-            available_on: Time.now,
-            price: master[:pricing_schedule],
-            shipping_category: shipping,
-            product_properties: [
-              product_property_for(:directions, master[:directions]),
-              product_property_for(:analysis, master[:analysis]),
-              product_property_for(:additives, master[:nutritional_additives]),
-              product_property_for(:ingredients, master[:ingredients])
-            ].compact)
-        end
-        if has_variants && !ENV['skip_variants']
+        product.update!(
+          sku: (has_variants ? '' : master[:product_code]),
+          name: master[:item_name],
+          description: master[:item_description],
+          taxons: (brands_for(master[:category]) + birds_for(master[:usage])),
+          option_types: [@option_types[:size]],
+          available_on: Time.now,
+          price: master[:pricing_schedule],
+          shipping_category: shipping,
+          product_properties: [
+            product_property_for(:directions, master[:directions]),
+            product_property_for(:analysis, master[:analysis]),
+            product_property_for(:additives, master[:nutritional_additives]),
+            product_property_for(:ingredients, master[:ingredients])
+          ].compact)
+        if has_variants
           product.update!(variants: variants.map do |variant|
-            weight = normalize_weight(variant[:weight])
             record = Spree::Variant.find_or_initialize_by(
               sku: variant[:product_code])
             record.update!(
               product: product,
               price: variant[:pricing_schedule],
-              option_values: [
-                Spree::OptionValue
-                  .where(option_type: @option_types[:size], name: weight)
-                  .create_with(presentation: weight)
-                  .first_or_create!
-              ])
+              option_values: [option_value_for(variant[:weight])])
             record
           end)
+        else
+          product.master.update!(
+            option_values: [option_value_for(master[:weight])])
         end
-        unless ENV['skip_images']
+        if ENV['images']
           product.master.update!(images: variants
             .map { |variant| variant[:'1000px_image_name'] }
             .reject(&:blank?)

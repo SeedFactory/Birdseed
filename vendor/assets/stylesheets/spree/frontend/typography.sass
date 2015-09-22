@@ -1,0 +1,42 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway:300,400,500,600)
+
+body
+  font-family: Raleway, Helvetica, Arial, sans-serif
+
+h1
+  font-size: 42px
+
+h2
+  font-size: 36px
+
+h3
+  font-size: 24px
+
+h4
+  font-size: 21px
+
+h3, h4
+  color: $light-text-color
+
+h1, h2, h3, h4
+  font-weight: 300
+  margin: 0
+
+a
+  color: inherit
+  touch-action: manipulation
+  user-select: none
+
+  &:hover
+    color: inherit
+
+  &:hover, &:focus
+    text-decoration: none
+
+  @media print
+  
+    &[href]:after
+      content: ''
+
+form label, table th
+  +small-caps

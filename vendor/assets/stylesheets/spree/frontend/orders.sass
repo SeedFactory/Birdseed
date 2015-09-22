@@ -1,0 +1,109 @@
+.orders
+  
+  h1
+    margin-bottom: 20px
+
+.orders-list
+  width: 100%
+  display: table
+
+.orders-list-headers,
+.orders-list-row
+  display: table-row
+
+  span
+    display: table-cell
+
+.orders-list-headers
+  +small-caps
+
+  span
+    padding: 0 10px 5px
+
+.orders-list-row
+  transition: all 0.15s
+
+  &:hover
+    background: $row-hover-background-color
+
+  &:active
+    background: $row-active-background-color
+
+  .orders-number-column
+    font-weight: 500
+
+  span
+    padding: 10px
+    border-top: 1px solid $border-color
+
+.orders-total-column
+  text-align: right
+
+.orders-action-column
+  text-align: right
+
+  strong
+    +small-caps($blue)
+    position: relative
+    left: 4px
+    padding: 2px 4px
+    border-radius: 3px
+    transition: all 0.15s
+
+  .orders-list-row:hover &
+
+    strong
+      left: 0
+      color: white
+      background: $blue
+
+  .orders-list-row:active &
+
+    strong
+      left: 0
+      color: white
+      background: darken($blue, 5%)
+
+@media (max-width: $screen-xs-max)
+  
+  .orders-list
+    display: block
+
+  .orders-list-headers,
+  .orders-list-row
+    display: block
+  
+  .orders-list-headers
+
+    .orders-date-column,
+    .orders-total-column,
+    .orders-status-column
+      display: none
+
+  .orders-list-row
+    padding: 10px 0
+    border-top: 1px solid $border-color
+    position: relative
+
+    span
+      display: block
+      border: 0
+      padding: 0 10px
+
+    .orders-number-column
+      font-size: 18px
+
+    .orders-total-column
+      color: $light-text-color
+      text-align: left
+
+    .orders-status-column,
+    .orders-action-column
+      position: absolute
+      right: 0
+
+    .orders-status-column
+      bottom: 15px
+
+    .orders-action-column
+      top: 15px

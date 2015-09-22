@@ -4,9 +4,25 @@ module ApplicationHelper
     Rails.application.routes.url_helpers
   end
 
-  def brand product
-    @brands_taxonomy ||= Spree::Taxonomy.find_by(name: 'Brands')
-    product.taxons.find_by(taxonomy: @brands_taxonomy).try(:name)
+  def high_dpi_images
+    @high_dpi_images ||= {}
+  end
+
+  def low_dpi_images
+    @low_dpi_images ||= {}
+  end
+
+  def reset_responsive_images!
+    @low_dpi_images = {}
+    @high_dpi_images = {}
+  end
+
+  def responsive_image_tag attachment, low_dpi_style, high_dpi_style, options = {}
+    id = attachment.url(low_dpi_style)[/[^\.]+/].gsub('/', '-')[1..-1]
+    options[:class] = [options[:class], "responsive-image-#{id}"].compact
+    high_dpi_images[id] = attachment.url high_dpi_style
+    low_dpi_images[id] = attachment.url low_dpi_style
+    content_tag :figure, '', options
   end
 
   def option_values variant
@@ -47,8 +63,8 @@ module ApplicationHelper
 
   def parse_property_value product_property
     product_property.value.split("\n").map! do |line|
-      index = line.index(/[\d\.,]+[^\d\.,]+$/)
-      [line[0...index], line[index..-1]]
+      index = line.index(/[\d\-\.,]+[^\d\-\.,]+$/)
+      index ? [line[0...index], line[index..-1]] : [line]
     end
   end
 

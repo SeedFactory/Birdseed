@@ -1,18 +1,15 @@
 <tr>
   <td class="cart-item-image-column">
     <%= link_to item.variant.product do %>
-      <% if item.variant.images.any? %>
-        <%= image_tag item.variant.images[0].attachment(:small), class: 'cart-item-image' %>
-      <% else %>
-        <%= small_image item.variant.product, class: 'cart-item-image' %>
-      <% end %>
+      <%= responsive_image_tag (item.variant.images + item.variant.product.images).first.attachment,
+        :mini, :small, class: 'cart-item-image' %>
     <% end %>
   </td>
   <td>
     <%= link_to item.variant.product do %>
-      <% if brand_name = brand(item.variant.product) %>
+      <% if item.variant.product.brand %>
         <div class="cart-item-brand">
-          <%= brand_name %>
+          <%= item.variant.product.brand.name %>
         </div>
       <% end %>
       <div class="cart-item-name">
