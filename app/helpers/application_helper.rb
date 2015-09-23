@@ -4,6 +4,23 @@ module ApplicationHelper
     Rails.application.routes.url_helpers
   end
 
+  def products_cache_key
+    [ @products.maximum(:updated_at) || Date.now,
+      params[:page],
+      params[:bird],
+      params[:brand],
+      params[:query],
+      @products.count
+    ].compact
+  end
+
+  def taxons_cache_key
+    [ (@birds || @brands).maximum(:updated_at) || Date.now,
+      @bird,
+      @brand,
+    ].compact
+  end
+
   def high_dpi_images
     @high_dpi_images ||= {}
   end

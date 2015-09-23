@@ -1,32 +1,36 @@
 <div class="shop-nav-taxons<%= ' shop-nav-taxons-selected' if taxon %>" data-scroll-target data-scroller-container>
-  <div data-scroller-left>
-    <span class="glyphicon glyphicon-menu-left"></span>
-  </div>
-  <div class="shop-nav-taxons-scroller" data-scroller>
-    <% taxons.each do |taxon| %>
-      <% if taxon.products.any? %>
-        <%= active_link_to "/shop/#{taxon.permalink}", class: 'shop-nav-taxon', data: { scroller_target: '' } do %>
-          <% if type == 'bird' %>
-            <div class="shop-nav-taxon-name">
-              <%= taxon.name %>
-            </div>
+  <% cache taxons_cache_key do %>
+    <div data-scroller-left>
+      <span class="glyphicon glyphicon-menu-left"></span>
+    </div>
+    <div class="shop-nav-taxons-scroller" data-scroller>
+      <% taxons.each do |taxon| %>
+        <% if taxon.products.any? %>
+          <%= active_link_to "/shop/#{taxon.permalink}", class: 'shop-nav-taxon', data: { scroller_target: '' } do %>
+            <% if type == 'bird' %>
+              <div class="shop-nav-taxon-name">
+                <%= taxon.name %>
+              </div>
+            <% end %>
+            <%= responsive_image_tag taxon.icon, :normal, :normal_2x, alt: taxon.name,
+              class: ('needs-border' if type == 'brand' && taxon.needs_border?) %>
           <% end %>
-          <%= responsive_image_tag taxon.icon, :normal, :normal_2x, alt: taxon.name,
-            class: ('needs-border' if type == 'brand' && taxon.needs_border?) %>
         <% end %>
       <% end %>
-    <% end %>
-    <%= render 'spree/shared/responsive_image_styles' %>
-  </div>
-  <div data-scroller-right>
-    <span class="glyphicon glyphicon-menu-right"></span>
-  </div>
+      <%= render 'spree/shared/responsive_image_styles' %>
+    </div>
+    <div data-scroller-right>
+      <span class="glyphicon glyphicon-menu-right"></span>
+    </div>
+  <% end %>
 </div>
 <% if taxon %>
-  <div class="shop-taxon-header container-fluid">
-    <h3><%= taxon.taxonomy.name %></h3>
-    <h1><%= taxon.name %></h1>
-  </div>
+  <% cache taxon do %>
+    <div class="shop-taxon-header container-fluid">
+      <h3><%= taxon.taxonomy.name %></h3>
+      <h1><%= taxon.name %></h1>
+    </div>
+  <% end %>
 <% else %>
   <div class="shop-taxon-empty container-fluid">
     Select a
