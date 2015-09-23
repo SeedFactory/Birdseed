@@ -13,7 +13,7 @@ class LoginController < Spree::BaseController
     case
     when !valid_email?
       @user.validate
-    when @user.email != user_params[:previous_email]
+    when @user.email != params[:previous_email]
     when @user.persisted? && reset_password?
       @user.send_reset_password_instructions
     when @user.persisted?
@@ -49,13 +49,14 @@ class LoginController < Spree::BaseController
   end
 
   def set_user
-    @user = Spree::User.find_or_initialize_by(user_params.slice(:email))
+    @user = user_params.key?(:email) ?
+      Spree::User.find_or_initialize_by(user_params.slice(:email)) :
+      Spree::User.new
   end
 
   def user_params
     params.key?(:spree_user) ? 
-      params.require(:spree_user).permit(:email, :password) :
-      { email: @order.email }
+      params.require(:spree_user).permit(:email, :password) : {}
   end
 
 end
