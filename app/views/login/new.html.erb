@@ -2,7 +2,7 @@
   <div class="login">
     <h1>Login or Signup</h1>
     <%= form_for @user, as: :spree_user, url: app_url_helpers.login_path, method: :post do |form| %>
-      <%= hidden_field :previous_email, @user.email %>
+      <%= hidden_field_tag :previous_email, @user.email %>
       <%= form_group form, :email %>
       <% if valid_email? %>
         <div class="alert alert-info">
