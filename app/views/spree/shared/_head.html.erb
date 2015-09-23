@@ -3,6 +3,10 @@
 <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
 <meta content="width=device-width, initial-scale=1.0, maximum-scale=1" name="viewport">
 <%== meta_data_tags %>
+<meta property="og:url" content="<%= current_store.url %>" />
+<meta property="og:image" content="<%= image_path 'icons/og' %>" />
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Birdseed.com" />
 <%= canonical_tag(current_store.url) %>
 <link rel="shortcut icon" href="<%= image_path 'icons/favicon' %>">
 <link rel="apple-touch-icon" sizes="57x57" href="<%= image_path 'icons/apple-icon-57x57' %>">

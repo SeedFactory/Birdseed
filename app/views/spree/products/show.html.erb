@@ -64,15 +64,29 @@
     <% end %>
     <div class="product-info col-lg-6 col-md-pull-0 col-md-offset-3 col-md-5 col-sm-7 col-sm-pull-7 col-sm-offset-7">
       <div class="product-properties">
+        <% if @product.description? %>
+            <%# bootstrap collapse needs '.panel' %>
+            <div class="product-property panel">
+              <a class="product-property-name" data-parent=".product-properties" data-toggle="collapse" href="#product-property-0">
+                Description
+                <span class="glyphicon glyphicon-triangle-left"></span>
+                <span class="glyphicon glyphicon-triangle-bottom"></span>
+              </a>
+              <div class="product-property-value collapse in" id="product-property-0" itemprop="description">
+                <%= @product.description %>
+              </div>
+            </div>
+        <% end %>
         <% @product_properties.each.with_index do |product_property, index| %>
           <%# bootstrap collapse needs '.panel' %>
+          <% open = index.zero? && !@product.description? %>
           <div class="product-property panel">
-            <a class="product-property-name<%= ' collapsed' if index != 0 %>" data-parent=".product-properties" data-toggle="collapse" href="#product-property-<%= product_property.id %>">
+            <a class="product-property-name<%= ' collapsed' unless open %>" data-parent=".product-properties" data-toggle="collapse" href="#product-property-<%= product_property.id %>">
               <%= product_property.property.presentation %>
               <span class="glyphicon glyphicon-triangle-left"></span>
               <span class="glyphicon glyphicon-triangle-bottom"></span>
             </a>
-            <div class="product-property-value collapse<%= ' in' if index == 0 %>" id="product-property-<%= product_property.id %>">
+            <div class="product-property-value collapse<%= ' in' if open %>" id="product-property-<%= product_property.id %>">
               <% if format_property_value? product_property %>
                 <table>
                   <% parse_property_value(product_property).each do |name, value| %>
