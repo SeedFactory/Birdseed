@@ -7,7 +7,7 @@
   <div class="checkout-register">
     <h1>Get Started</h1>
     <%= form_for @user, as: :spree_user, url: update_checkout_registration_path, method: :put do |form| %>
-      <%= hidden_field :spree_user, :previous_email, value: @user.email %>
+      <%= hidden_field_tag :previous_email, @user.email %>
       <%= form_group form, :email %>
       <% if valid_email? %>
         <div class="alert alert-info">

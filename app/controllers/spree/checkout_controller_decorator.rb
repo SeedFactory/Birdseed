@@ -11,7 +11,7 @@ Spree::CheckoutController.class_eval do
     case
     when !valid_email?
       @user.validate
-    when @user.email != user_params[:previous_email]
+    when @user.email != params[:previous_email]
     when user_params[:password] == ''
       current_order.update_attribute(:email, @user.email)
       return redirect_to spree.checkout_path
@@ -21,9 +21,13 @@ Spree::CheckoutController.class_eval do
         return redirect_to spree.checkout_path
       end
       @user.errors.add(:password, 'is incorrect')
-    when @user.save
-      sign_in_and_associate
-      return redirect_to spree.checkout_path
+    else
+      @user.assign_attributes(user_params.merge(
+        password_confirmation: user_params[:password]))
+      if @user.save
+        sign_in_and_associate
+        return redirect_to spree.checkout_path
+      end
     end
     render 'registration'
   end
@@ -48,12 +52,13 @@ Spree::CheckoutController.class_eval do
   end
 
   def set_user
-    email = user_params.fetch(:email, @order.email)
-    @user = Spree::User.find_or_initialize_by(email: email)
+    @user = Spree::User.find_or_initialize_by(user_params.slice(:email))
   end
 
   def user_params
-    params.fetch(:spree_user, {})
+    params.key?(:spree_user) ? 
+      params.require(:spree_user).permit(:email, :password) :
+      { email: @order.email }
   end
 
 end

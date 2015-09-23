@@ -22,9 +22,13 @@ class LoginController < Spree::BaseController
         return redirect_to Rails.application.routes.url_helpers.shop_path
       end
       @user.errors.add(:password, 'is incorrect')
-    when @user.save
-      sign_in_and_associate
-      return redirect_to Rails.application.routes.url_helpers.shop_path
+    else
+      @user.assign_attributes(user_params.merge(
+        password_confirmation: user_params[:password]))
+      if @user.save
+        sign_in_and_associate
+        return redirect_to Rails.application.routes.url_helpers.shop_path
+      end
     end
     render 'new'
   end
@@ -45,11 +49,13 @@ class LoginController < Spree::BaseController
   end
 
   def set_user
-    @user = Spree::User.find_or_initialize_by(email: user_params[:email])
+    @user = Spree::User.find_or_initialize_by(user_params.slice(:email))
   end
 
   def user_params
-    params.fetch(:spree_user, {})
+    params.key?(:spree_user) ? 
+      params.require(:spree_user).permit(:email, :password) :
+      { email: @order.email }
   end
 
 end
