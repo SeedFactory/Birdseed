@@ -18,7 +18,7 @@ module ApplicationHelper
   end
 
   def responsive_image_tag attachment, low_dpi_style, high_dpi_style, options = {}
-    id = attachment.url(low_dpi_style)[/[^\.]+/].gsub('/', '-')[1..-1]
+    id = URI(attachment.url(low_dpi_style)).path.split(/[\/\.]/)[2..-2].join('-')
     options[:class] = [options[:class], "responsive-image-#{id}"].compact
     high_dpi_images[id] = attachment.url high_dpi_style
     low_dpi_images[id] = attachment.url low_dpi_style
