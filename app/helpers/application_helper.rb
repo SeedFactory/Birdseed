@@ -80,7 +80,7 @@ module ApplicationHelper
 
   def parse_property_value product_property
     product_property.value.split("\n").map! do |line|
-      index = line.index(/[\d\-\.,]+[^\d\-\.,]+$/)
+      index = line.index(/[\d\.,]+[^\d\.,]+$/)
       index ? [line[0...index], line[index..-1]] : [line]
     end
   end
