@@ -1,9 +1,7 @@
 namespace :db do
 
   task push: :environment do
-    require 'aws-sdk'
     require 'pty'
-
     file = Tempfile.new(['birdseed_dev', '.dump'])
     `pg_dump -Fc --no-acl --no-owner birdseed_dev > #{file.path}`
     s3 = AWS::S3.new

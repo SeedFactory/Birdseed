@@ -3,4 +3,5 @@
 
 require File.expand_path('../config/application', __FILE__)
 
+Bundler.require(:tasks)
 Rails.application.load_tasks

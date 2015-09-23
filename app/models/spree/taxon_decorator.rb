@@ -6,7 +6,11 @@ Spree::Taxon.class_eval do
       default_style: :normal)
   
   def needs_border? style = nil
-    image = Magick::Image.read(icon.path(style)).first
+    image = if Rails.env.production?
+      Magick::Image.from_blob(open(icon.url(style)).read).first
+    else
+      Magick::Image.read(icon.path(style)).first
+    end
     corners = [0, image.columns - 1].product([0, image.rows - 1]).map do |x, y|
       image.get_pixels(x, y, 1, 1).first
     end

@@ -27,6 +27,11 @@ group :production do
   gem 'rails_12factor'
 end
 
+group :tasks do
+  gem 'parallel'
+    gem 'ruby-progressbar'
+end
+
 gem 'aws-sdk', '<2.0' # http://stackoverflow.com/a/28376678
 
 gem 'deface', github: 'spree/deface' # https://github.com/bkeepers/dotenv/issues/177
