@@ -464,9 +464,12 @@ class Submit
     method = form.attr('method')
     action = form.attr('action')
     data = form.serializeArray()
-    if target.is(':submit')
-      data.push name: target.attr('name'), value: target.val()
-    visit action, method: method, data: data
+    if method is 'get'
+      visit action + '?' + $.param(data)
+    else
+      if target.is(':submit')
+        data.push name: target.attr('name'), value: target.val()
+      visit action, method: method, data: data
 
 
 # The Click class handles clicked links, verifying if Turbolinks should

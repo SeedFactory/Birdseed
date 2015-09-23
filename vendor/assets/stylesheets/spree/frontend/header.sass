@@ -10,29 +10,25 @@
     display: none
 
 .birdseed-logo
+  width: 152px
+  height: 23px
   margin: 0
   position: relative
   top: -3px
   float: left
+  background-image: image-url("logos/black")
+  background-size: contain
 
-.birdseed-logo img
-  width: 150px
-  vertical-align: top
-
-.birdseed-logo a
-  height: 21px
-  display: block
-
-.birdseed-logo-white
-  display: none
+  @media (min-resolution: 100dpi)
+    background-image: image-url("logos/black_2x")
 
 .birdseed-header-inverse
+  
+  .birdseed-logo
+    background-image: image-url("logos/white")
 
-  .birdseed-logo-white
-    display: block
-
-  .birdseed-logo-black
-    display: none
+    @media (min-resolution: 100dpi)
+      background-image: image-url("logos/white_2x")
 
   .birdseed-header
     position: absolute

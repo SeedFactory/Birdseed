@@ -49,11 +49,9 @@
                     <% else %>
                       <div class="shop-product-image" style="background-color: #DDD;"></div>
                     <% end %>
-                    <% if product.brand %>
-                      <div class="shop-product-brand" itemprop="brand">
-                        <%= product.brand.name %>
-                      </div>
-                    <% end %>
+                    <div class="shop-product-brand" itemprop="brand">
+                      <%= product.brand ? product.brand.name : '&nbsp;'.html_safe %>
+                    </div>
                     <div class="shop-product-name" itemprop="name" title="<%= product.name %>">
                       <%= truncate(product.name, length: 50) %>
                     </div>
@@ -63,6 +61,7 @@
             <% end %>
             <%= render 'spree/shared/responsive_image_styles' %>
           </div>
+          <%= pagination_for @products %>
         <% end %>
       <% else %>
         <div class="shop-products-empty">

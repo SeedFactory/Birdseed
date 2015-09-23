@@ -1,10 +1,7 @@
 <header class="birdseed-header container-fluid">
-  <h1 class="birdseed-logo">
-    <%= link_to :root do %>
-      <%= image_tag 'logo-white.png', class: 'birdseed-logo-white' %>
-      <%= image_tag 'logo-black.png', class: 'birdseed-logo-black' %>
-    <% end %>
-  </h1>
+  <%= link_to :root do %>
+    <h1 class="birdseed-logo"></h1>
+  <% end %>
   <nav class="birdseed-nav">
     <%= link_to 'Shop', app_url_helpers.shop_path %>
     <%= link_to 'About', app_url_helpers.about_path %>

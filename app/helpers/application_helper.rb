@@ -5,7 +5,7 @@ module ApplicationHelper
   end
 
   def products_cache_key
-    [ @products.maximum(:updated_at) || Date.now,
+    [ @products.maximum(:updated_at) || Time.now,
       params[:page],
       params[:bird],
       params[:brand],
@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def taxons_cache_key
-    [ (@birds || @brands).maximum(:updated_at) || Date.now,
+    [ (@birds || @brands).maximum(:updated_at) || Time.now,
       @bird,
       @brand,
     ].compact
@@ -87,6 +87,29 @@ module ApplicationHelper
 
   def format_property_value? product_property
     product_property.property.name.in? %w(additives analysis)
+  end
+
+  def pagination_for collection
+    content_tag :nav, class: 'shop-pagination' do
+      content_tag :ul, class: 'pagination' do
+        content_tag(:li, class: ('disabled' if collection.first_page?)) do
+          link_to '&laquo;'.html_safe, url_for_page(collection.prev_page)
+        end <<
+        (1..collection.num_pages).map do |i|
+          content_tag :li, class: ('active' if collection.current_page == i) do
+            link_to i, url_for_page(i)
+          end
+        end.join.html_safe <<
+        content_tag(:li, class: ('disabled' if collection.last_page?)) do
+          link_to '&raquo;'.html_safe, url_for_page(collection.next_page)
+        end
+      end
+    end if collection.num_pages > 1
+  end
+
+  def url_for_page page
+    path = request.fullpath.sub(/[\?&]?page=\d+/, '')
+    "#{path}#{path['?'] ? '&' : '?'}page=#{page}"
   end
 
   private

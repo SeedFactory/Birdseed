@@ -16,7 +16,7 @@ $(document).on('page:change', function() {
     var direction = left ? (right ? 'both' : 'left') : (right ? 'right' : 'none');
     container.attr('data-scroller-direction', direction);
   }
-  container.find('[data-scroller-left]').on('click touchstart', function() {
+  container.find('[data-scroller-left]').on('click', function() {
     scroller.find('[data-scroller-target]').each(function() {
       var position = -$(this).position().left;
       if(position > 0 && position - 2 < $(this).outerWidth(true)) {
@@ -25,11 +25,11 @@ $(document).on('page:change', function() {
       }
     });
   });
-  container.find('[data-scroller-right]').on('click touchstart', function() {
+  container.find('[data-scroller-right]').on('click', function() {
     var offset = $(window).width();
     scroller.find('[data-scroller-target]').each(function() {
       var position = $(this).position().left;
-      if(position < offset && position + $(this).outerWidth(true) > offset) {
+      if(position <= offset && position + $(this).outerWidth(true) > offset) {
         scroller.animate({ scrollLeft: '+=' + position }, position);
         return false;
       }
