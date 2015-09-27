@@ -35,8 +35,9 @@ namespace :push do
 
     @bucket = AWS::S3.new.buckets['birdseed']
     @bucket.objects.with_prefix('spree').delete_all
-    upload Spree::Image, :attachment
-    upload Spree::Taxon, :icon
+    Paperclip::AttachmentRegistry.each_definition do |klass, name|
+      upload klass, name
+    end
 
   end
 

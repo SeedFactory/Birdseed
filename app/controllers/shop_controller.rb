@@ -1,7 +1,9 @@
 class ShopController < Spree::StoreController
 
   def index
-    @products = products_for(taxon: taxon_for('specials'))
+    if (@products = specials).none?
+      redirect_to app_url_helpers.shop_birds_path, turbolinks: true
+    end
   end
 
   def birds
@@ -26,20 +28,6 @@ class ShopController < Spree::StoreController
         name_or_description_or_taxons_name_cont: @query
       }).uniq
     end
-  end
-
-  private
-
-  def taxon_for permalink
-    Spree::Taxon.friendly.find(permalink)
-  end
-
-  def products_for taxon: nil, search: nil
-    searcher_params = params.merge(include_images: true)
-    searcher_params.merge!(taxon: taxon.id) if taxon
-    searcher_params.merge!(search: search) if search
-    searcher = build_searcher(searcher_params)
-    searcher.retrieve_products
   end
 
 end

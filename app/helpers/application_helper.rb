@@ -1,9 +1,5 @@
 module ApplicationHelper
 
-  def app_url_helpers
-    Rails.application.routes.url_helpers
-  end
-
   def products_cache_key
     [ @products.maximum(:updated_at) || Time.now,
       params[:page],
@@ -35,7 +31,8 @@ module ApplicationHelper
   end
 
   def responsive_image_tag attachment, low_dpi_style, high_dpi_style, options = {}
-    id = URI(attachment.url(low_dpi_style)).path.split(/[\/\.]/)[2..-2].join('-')
+    path = URI(attachment.url(low_dpi_style)).path
+    id = path.split(/[\/\.]/)[2..-2].join('-').dasherize
     options[:class] = [options[:class], "responsive-image-#{id}"].compact
     high_dpi_images[id] = attachment.url high_dpi_style
     low_dpi_images[id] = attachment.url low_dpi_style

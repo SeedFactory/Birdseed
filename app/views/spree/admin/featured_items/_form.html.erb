@@ -1,0 +1,38 @@
+<%= render 'spree/admin/shared/error_messages', target: @featured_item %>
+
+<div class="row" id="general_fields" >
+  <div class="col-md-6">
+    <%= f.field_container :type, class: ['form-group'] do %>
+      <%= f.label :type %>
+      <%= f.text_field :type, class: 'form-control' %>
+    <% end %>
+    <%= f.field_container :title, class: ['form-group'] do %>
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+    <% end %>
+    <%= f.field_container :body, class: ['form-group'] do %>
+      <%= f.label :body %>
+      <%= f.text_area :body, rows: 3, class: 'form-control' %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= f.field_container :image, class: ['form-group'] do %>
+      <%= f.label :image %>
+      <%= f.file_field :image, class: 'form-control' %>
+    <% end %>
+    <%= f.field_container :url, class: ['form-group'] do %>
+      <%= f.label :url %>
+      <%= f.text_field :url, class: 'form-control' %>
+    <% end %>
+    <%= f.field_container :position, class: ['form-group'] do %>
+      <%= f.label :position %>
+      <%= f.number_field :position, class: 'form-control' %>
+    <% end %>
+    <%= f.field_container :active, class: ['checkbox'] do %>
+      <%= f.label :active do %>
+        <%= f.check_box :active %>
+        Active
+      <% end %>
+    <% end %>
+  </div>
+</div>

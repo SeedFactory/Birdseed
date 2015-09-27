@@ -18,4 +18,10 @@ Rails.application.routes.draw do
 
   mount Spree::Core::Engine, :at => '/'
 
+  Spree::Core::Engine.routes.append do
+    namespace :admin do
+      resources :featured_items
+    end
+  end
+
 end

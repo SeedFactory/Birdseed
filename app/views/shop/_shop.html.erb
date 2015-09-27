@@ -4,9 +4,11 @@
 </div>
 <div class="shop-products">
   <div class="shop-nav" data-scroll-target>
-    <%= active_link_to app_url_helpers.shop_path, active: :exclusive do %>
-      <span class="glyphicon glyphicon-star"></span>
-      Specials
+    <% if specials.any? %>
+      <%= active_link_to app_url_helpers.shop_path, active: :exclusive do %>
+        <span class="glyphicon glyphicon-star"></span>
+        Specials
+      <% end %>
     <% end %>
     <%= active_link_to app_url_helpers.shop_brands_path do %>
       <span class="glyphicon glyphicon-tag"></span>

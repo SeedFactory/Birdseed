@@ -8,49 +8,25 @@
     <span class="glyphicon glyphicon-menu-left"></span>
   </div>
   <div class="featured-scroller" data-scroller>
-    <%= link_to app_url_helpers.shop_brands_path('versele-laga'), class: 'featured-item', data: { scroller_target: '' } do %>
-      <div class="featured-item-image">
-        <%= image_tag 'featured/versele-laga.png' %>
-      </div>
-      <div class="featured-item-info">
-        <div class="featured-item-header">
-          <div class="featured-item-type">New Product</div>
-          <div class="featured-item-title">Versele-Laga</div>
+    <% @featured_items.each do |featured_item| %>
+      <%= link_to featured_item.url, class: 'featured-item', data: { scroller_target: true } do %>
+        <%= responsive_image_tag featured_item.image, :normal, :normal_2x, class: 'featured-item-image' %>
+        <div class="featured-item-info">
+          <div class="featured-item-header">
+            <div class="featured-item-type">
+              <%= featured_item.type %>
+            </div>
+            <div class="featured-item-title">
+              <%= featured_item.title %>
+            </div>
+          </div>
+          <div class="featured-item-body">
+            <%= featured_item.body %>
+          </div>
         </div>
-        <div class="featured-item-body">
-          Your pigeon will reach mach 1 with our new high energy diet.
-        </div>
-      </div>
+      <% end %>
     <% end %>
-    <%= link_to app_url_helpers.about_path, class: 'featured-item', data: { scroller_target: '' } do %>
-      <div class="featured-item-image">
-        <%= image_tag 'featured/new_website.png' %>
-      </div>
-      <div class="featured-item-info">
-        <div class="featured-item-header">
-          <div class="featured-item-type">Announcement</div>
-          <div class="featured-item-title">New Website</div>
-        </div>
-        <div class="featured-item-body">
-          Redesigned, easier to use.
-        </div>
-      </div>
-    <% end %>
-    <%= link_to app_url_helpers.shop_brands_path('avian-science'), class: 'featured-item', data: { scroller_target: '' } do %>
-      <div class="featured-item-image">
-        <%= image_tag 'featured/volkman_redesign.png' %>
-      </div>
-      <div class="featured-item-info">
-        <div class="featured-item-header">
-          <div class="featured-item-type">Announcement</div>
-          <div class="featured-item-title">Volkman Redesign</div>
-        </div>
-        <div class="featured-item-body">
-          Does your parrot have an eye for design?
-          He will love our new packages!
-        </div>
-      </div>
-    <% end %>
+    <%= render 'spree/shared/responsive_image_styles' %>
   </div>
   <div class="featured-control-right" data-scroller-right>
     <span class="glyphicon glyphicon-menu-right"></span>

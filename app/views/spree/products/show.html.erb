@@ -2,15 +2,19 @@
   <div class="product container-fluid" itemscope itemtype="https://schema.org/Product">
     <div class="row">
       <div class="product-header col-lg-6 col-md-5 col-md-offset-3">
-        <%= link_to @product.brand.name, "/shop/#{@product.brand.permalink}",
-          class: 'product-brand', itemprop: 'brand' %>
+        <% if @product.brand %>
+          <%= link_to @product.brand.name, "/shop/#{@product.brand.permalink}",
+            class: 'product-brand', itemprop: 'brand' %>
+        <% end %>
         <div class="product-name" itemprop="name">
           <%= @product.name %>
         </div>
       </div>
       <div class="product-images col-md-3 col-md-pull-0 col-md-offset-0 col-sm-5">
-        <%= responsive_image_tag @product.images.first.attachment, :product, :large,
-          class: 'product-image', itemprop: 'image' %>
+        <% if @product.images.any? %>
+          <%= responsive_image_tag @product.images.first.attachment, :product, :large,
+            class: 'product-image', itemprop: 'image' %>
+        <% end %>
         <% if (@product.images + @product.variant_images).uniq.size > 1 %>
           <div class="product-images-thumbnails">
             <% (@product.images + @product.variant_images).uniq.each do |image| %>

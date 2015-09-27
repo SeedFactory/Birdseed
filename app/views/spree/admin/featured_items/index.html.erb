@@ -1,0 +1,72 @@
+<% content_for :page_title do %>
+  <%= plural_resource_name(Spree::FeaturedItem) %>
+<% end %>
+
+<% content_for :page_actions do %>
+  <%= button_link_to 'New Featured Item', new_object_url, :class => "btn-success", :icon => 'add' %>
+<% end %>
+
+<% content_for :table_filter do %>
+  <div>
+    <%= search_form_for [:admin, @search] do |f| %>
+      <div class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= label_tag :q_title_cont, 'Title' %>
+            <%= f.text_field :title_cont, tabindex: 1, class: "form-control js-quick-search-target" %>
+          </div>
+          <div class="form-group">
+            <%= label_tag :q_active_eq, 'Active' %>
+            <%= f.select :active_eq, [true, false], { include_blank: true }, tabindex: 1, class: "select2" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= label_tag :q_type_cont, 'Type' %>
+            <%= f.text_field :type_cont, tabindex: 1, class: "form-control" %>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <%= button Spree.t(:filter_results), 'search' %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<%= paginate @featured_items %>
+
+<% if @featured_items.any? %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Type</th>
+        <th>Position</th>
+        <th>Active</th>
+        <th class="actions"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @featured_items.each do |featured_item| %>
+        <tr id="<%= spree_dom_id featured_item %>">
+          <td><%= featured_item.title %></td>
+          <td><%= featured_item.type %></td>
+          <td><%= featured_item.position %></td>
+          <td><%= featured_item.active %></td>
+          <td class="actions actions-2">
+            <%= link_to_edit featured_item, :no_text => true %>
+            <%= link_to_delete featured_item, :no_text => true %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div class="alert alert-info no-objects-found">
+    <%= Spree.t(:no_resource_found, resource: plural_resource_name(Spree::FeaturedItem)) %>,
+    <%= link_to Spree.t(:add_one), new_object_url %>!
+  </div>
+<% end %>
