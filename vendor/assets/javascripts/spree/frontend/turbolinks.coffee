@@ -440,10 +440,12 @@ class Scroll
     new Scroll target
 
   constructor: (target) ->
+    prev_url = document.location.href
     offset = $(target).closest('[data-scroll-target], body').offset().top;
     $(document).one 'page:change', ->
-      duration = Math.abs(window.scrollY - offset) * 2
-      $('body').animate({ scrollTop: offset }, duration)
+      if prev_url isnt document.location.href
+        duration = Math.abs(window.scrollY - offset) * 2
+        $('body').animate({ scrollTop: offset }, duration)
 
 
 # The Submit class is like Click but for forms.
