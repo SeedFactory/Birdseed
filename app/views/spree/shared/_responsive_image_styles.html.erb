@@ -1,12 +1,12 @@
-<% if @high_dpi_images.any? %>
+<% if high_dpi_images.any? %>
   <style type="text/css">
-    <% @low_dpi_images.each do |id, url| %>
+    <% low_dpi_images.each do |id, url| %>
       .responsive-image-<%= id %> {
         background-image: url(<%= url %>);
       }
     <% end %>
     @media (min-resolution: 100dpi) {
-      <% @high_dpi_images.each do |id, url| %>
+      <% high_dpi_images.each do |id, url| %>
         .responsive-image-<%= id %> {
           background-image: url(<%= url %>);
         }
