@@ -3,13 +3,13 @@ require 'csv'
 task import: :environment do
 
   @brand_mappings = {
-    'avian science super diet ' => 'avian-science',
+    'avian science super diet' => 'avian-science',
     'single seed' => nil,
     'wild bird' => 'volkman-wild-bird',
     'caged bird products' => nil,
     'premium wild bird' => 'premium-wild-bird',
     "bird's delight" => 'birds-delight',
-    'featherglow  diets ' => 'featherglow',
+    'featherglow diets' => 'featherglow',
     "nature's feast vitamized" => 'natures-feast',
     'small animal' => 'small-animal',
     'petamine' => 'petamine',
