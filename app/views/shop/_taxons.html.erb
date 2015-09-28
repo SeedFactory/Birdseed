@@ -1,5 +1,5 @@
 <div class="shop-nav-taxons<%= ' shop-nav-taxons-selected' if taxon %>" data-scroll-target data-scroller-container>
-  <% cache taxons_cache_key do %>
+  <% cache taxons_cache_key(type, taxons, taxon) do %>
     <div data-scroller-left>
       <span class="glyphicon glyphicon-menu-left"></span>
     </div>

@@ -1,19 +1,19 @@
 module ApplicationHelper
 
-  def products_cache_key
-    [ @products.maximum(:updated_at) || Time.now,
+  def products_cache_key products
+    [ products.maximum(:updated_at) || Time.now,
       params[:page],
       params[:bird],
       params[:brand],
       params[:query],
-      @products.count
+      products.count
     ].compact
   end
 
-  def taxons_cache_key
-    [ (@birds || @brands).maximum(:updated_at) || Time.now,
-      @bird,
-      @brand,
+  def taxons_cache_key type, taxons, taxon
+    [ type,
+      taxons.maximum(:updated_at) || Time.now,
+      taxon
     ].compact
   end
 
