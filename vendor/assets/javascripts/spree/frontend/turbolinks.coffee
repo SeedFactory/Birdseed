@@ -448,10 +448,6 @@ class Scroll
 
 # The Submit class is like Click but for forms.
 class Submit
-  @installHandlerLast: (event) ->
-    unless event.defaultPrevented
-      document.removeEventListener 'submit', Submit.handle, false
-      document.addEventListener 'submit', Submit.handle, false
 
   @handle: (event) ->
     new Submit event
@@ -672,7 +668,8 @@ initializeTurbolinks = ->
   ProgressBar.enable()
 
   document.addEventListener 'click', Click.installHandlerLast, true
-  document.addEventListener 'submit', Submit.installHandlerLast, true
+  # Need jQuery because we are using fake 'submit' events.
+  $(document).on('submit', Submit.handle)
   window.addEventListener 'hashchange', rememberCurrentUrlAndState, false
   window.addEventListener 'popstate', onHistoryChange, false
 
