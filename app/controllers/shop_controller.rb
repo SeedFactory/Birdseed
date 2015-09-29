@@ -7,7 +7,7 @@ class ShopController < Spree::StoreController
   end
 
   def birds
-    @birds = taxon_for('birds').children
+    @birds = taxons_for('Birds')
     if @bird = params[:bird]
       @bird = taxon_for("birds/#{@bird}")
       @products = products_for(taxon: @bird)
@@ -15,7 +15,7 @@ class ShopController < Spree::StoreController
   end
 
   def brands
-    @brands = taxon_for('brands').children
+    @brands = taxons_for('Brands')
     if @brand = params[:brand]
       @brand = taxon_for("brands/#{@brand}")
       @products = products_for(taxon: @brand)
@@ -28,6 +28,12 @@ class ShopController < Spree::StoreController
         name_or_description_or_taxons_name_cont: @query
       }).uniq
     end
+  end
+
+  private
+
+  def taxons_for name
+    Spree::Taxonomy.find_by(name: name).taxons.order(:name)
   end
 
 end

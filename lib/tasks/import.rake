@@ -129,7 +129,7 @@ task import: :environment do
     when /tabs/  then "#{number} tabs"
     when /ml/    then "#{number}mL"
     when /l/     then "#{number}L"
-    else byebug; raise "Could not normalize weight: '#{weight}'"
+    else raise "Could not normalize weight: '#{weight}'"
     end
   end
 
