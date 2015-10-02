@@ -2,7 +2,7 @@ class ShopController < Spree::StoreController
 
   def index
     if (@products = specials).none?
-      redirect_to app_url_helpers.shop_birds_path, turbolinks: true
+      redirect_to app_url_helpers.shop_birds_path, turbolinks: request.xhr?
     end
   end
 

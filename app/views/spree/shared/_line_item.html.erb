@@ -1,8 +1,11 @@
 <tr>
   <td class="cart-item-image-column">
     <%= link_to item.variant.product do %>
-      <%= responsive_image_tag (item.variant.images + item.variant.product.images).first.attachment,
-        :mini, :small, class: 'cart-item-image' %>
+      <% images = (item.variant.images + item.variant.product.images).uniq %>
+      <% if images.any? %>
+        <%= responsive_image_tag images.first.attachment,
+          :mini, :small, class: 'cart-item-image' %>
+      <% end %>
     <% end %>
   </td>
   <td>

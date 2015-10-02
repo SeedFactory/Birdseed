@@ -19,9 +19,7 @@
               </p>
             <% end %>
             <strong>
-              <span class="hide">
-                <%= submit_tag '', name: :not_reset_password %>
-              </span>
+              <%= submit_tag '', name: :not_reset_password, class: 'login-fake-submit' %>
               <%= submit_tag (reset_password? ? 'Send Again' :'Forgot Password?'), name: :reset_password %>
             </strong>
           <% else %>

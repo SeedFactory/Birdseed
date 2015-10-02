@@ -19,7 +19,7 @@ class LoginController < Spree::BaseController
     when @user.persisted?
       if @user.valid_password?(user_params[:password])
         sign_in_and_associate
-        return redirect_to Rails.application.routes.url_helpers.shop_path
+        return redirect_to app_url_helpers.shop_path
       end
       @user.errors.add(:password, 'is incorrect')
     else
@@ -27,7 +27,7 @@ class LoginController < Spree::BaseController
         password_confirmation: user_params[:password]))
       if @user.save
         sign_in_and_associate
-        return redirect_to Rails.application.routes.url_helpers.shop_path
+        return redirect_to app_url_helpers.shop_path
       end
     end
     render 'new'
