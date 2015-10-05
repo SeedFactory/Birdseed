@@ -19,8 +19,8 @@
               </p>
             <% end %>
             <strong>
-              <%= submit_tag '', name: :not_reset_password, class: 'login-fake-submit' %>
-              <%= submit_tag (reset_password? ? 'Send Again' :'Forgot Password?'), name: :reset_password %>
+              <%= submit_tag '', name: :not_reset_password, class: 'login-fake-submit', tabindex: -1 %>
+              <%= submit_tag (reset_password? ? 'Send Again' :'Forgot Password?'), name: :reset_password, tabindex: -1 %>
             </strong>
           <% else %>
             It looks like you're new here, welcome!
