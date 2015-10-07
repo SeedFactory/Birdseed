@@ -29,6 +29,12 @@
   <% @order.all_adjustments.tax.eligible.group_by(&:label).each do |label, adjustments| %>
     <%= render 'spree/shared/adjustment', label: 'Tax', adjustments: adjustments %>
   <% end %>
+  <% @order.shipments.each do |shipment| %>
+    <tr>
+      <th>Shipping</th>
+      <td><%= shipment.display_discounted_cost %></td>
+    </tr>
+  <% end %>
   <% @order.adjustments.eligible.group_by(&:label).each do |label, adjustments| %>
     <%= render 'spree/shared/adjustment', label: "Adjustment: #{label}", adjustments: adjustments %>
   <% end %>
