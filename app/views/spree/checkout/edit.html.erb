@@ -9,7 +9,6 @@
 <div class="checkout-banner">
   <h1>Checkout</h1>
 </div>
-<%= flash_messages %>
 <div data-scroll-target>
   <%= render 'nav', { states: @order.checkout_steps, index: @order.checkout_steps.index(@order.state) } %>
   <div class="checkout container-fluid">
