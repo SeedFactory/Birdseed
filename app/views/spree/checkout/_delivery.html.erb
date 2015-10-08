@@ -1,0 +1,29 @@
+<div class="checkout-delivery">
+  <h1>Delivery</h1>
+  <div class="checkout-delivery-rates">
+    <div class="checkout-delivery-rates-header">
+      <div class="checkout-delivery-rate-name">
+        Options
+      </div>
+      <div class="checkout-delivery-rate-price">
+        Price
+      </div>
+    </div>
+    <%= form.fields_for :shipments do |ship_form| %>
+      <% ship_form.object.shipping_rates.each do |rate| %>
+        <label class="checkout-delivery-rate">
+          <%= ship_form.radio_button :selected_shipping_rate_id, rate.id %>
+          <div class="checkout-delivery-rate-name">
+            <%= rate.name %>
+          </div>
+          <div class="checkout-delivery-rate-price">
+            <%= rate.display_price %>
+          </div>
+        </label>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="checkout-actions">
+    <%= form.submit 'Continue' %>
+  </div>
+</div>

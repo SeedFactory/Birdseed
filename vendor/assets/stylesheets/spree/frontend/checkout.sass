@@ -17,11 +17,12 @@
   padding-bottom: 100px
 
   form label
-    a, a:hover, :active
+    a, a:hover, a:active
       color: $blue
 
 .checkout-address,
 .checkout-register,
+.checkout-delivery,
 .checkout-payment
   
   h1
@@ -74,6 +75,10 @@
   h3
     margin: 10px 0 20px 0
 
+.checkout-delivery-rates
+  border-bottom: 1px solid $border-color
+  margin-bottom: 30px
+
 .checkout-payment-expiration-separator:before
   width: 40px
   content: '/'
@@ -85,7 +90,8 @@
   font-size: 21px
   color: #888
 
-.checkout-payment-saved-cards
+.checkout-payment-saved-cards,
+.checkout-delivery-rates
   
   label
     margin-bottom: 0
@@ -107,26 +113,34 @@
   margin-bottom: 30px
 
 .checkout-payment-saved-cards-header,
-.checkout-payment-saved-cards-row
+.checkout-payment-saved-cards-row,
+.checkout-delivery-rates-header,
+.checkout-delivery-rate
   +clearfix
 
-.checkout-payment-saved-cards-header
+.checkout-payment-saved-cards-header,
+.checkout-delivery-rates-header
   +small-caps
 
   @media (max-width: $screen-xs-max)
     .checkout-payment-saved-cards-name,
-    .checkout-payment-saved-cards-expiration
+    .checkout-payment-saved-cards-expiration,
+    .checkout-delivery-rate-price
       display: none
 
 .checkout-payment-saved-cards-name,
 .checkout-payment-saved-cards-number,
 .checkout-payment-saved-cards-expiration,
-.checkout-payment-saved-cards-add
+.checkout-payment-saved-cards-add,
+.checkout-delivery-rate-name,
+.checkout-delivery-rate-price
   padding: 10px 0
 
 .checkout-payment-saved-cards-name,
 .checkout-payment-saved-cards-number,
 .checkout-payment-saved-cards-expiration,
+.checkout-delivery-rate-name,
+.checkout-delivery-rate-price
   float: left
 
   @media (max-width: $screen-xs-max)
@@ -151,11 +165,16 @@
   input:checked ~ &, label:active &
     background: linear-gradient(to bottom, $row-active-background-color, rgba($row-active-background-color, 0))
 
+.checkout-delivery-rate-name,
+.checkout-delivery-rate-price
+  width: 50%
+
 .checkout-payment-saved-cards-number
   width: 35%
 
 .checkout-payment-saved-cards-row .checkout-payment-saved-cards-number,
-.checkout-payment-saved-cards-add
+.checkout-payment-saved-cards-add,
+.checkout-delivery-rate .checkout-delivery-rate-name
   padding-left: 40px
 
 .checkout-payment-saved-cards-name
@@ -190,6 +209,20 @@
 
     .checkout-payment-saved-cards-expiration
       color: $light-text-color
+
+  .checkout-delivery-rate
+
+    .checkout-delivery-rate-name
+      padding-bottom: 0
+      font-size: 18px
+
+    .checkout-delivery-rate-price
+      padding-top: 0
+      padding-left: 40px
+
+  .checkout-delivery-rate-name,
+  .checkout-delivery-rate-price
+    width: auto
 
 .checkout-confirm
   width: 100%
