@@ -1,14 +1,6 @@
-namespace :push do
+namespace :paperclip do
 
-  task all: [:db, :paperclip]
-
-  task db: :environment do
-    file = Tempfile.new(['birdseed_dev', '.dump'])
-    `pg_dump -c --no-acl --no-owner birdseed_dev > #{file.path}`
-    `psql -p 5432 -h aa1b7ifvna6kjoa.caz3zkhmkymo.us-west-1.rds.amazonaws.com -U birdseed ebdb < #{file.path}`
-  end
-
-  task paperclip: :environment do
+  task push: :environment do
 
     def upload model, method
       styles = model.attachment_definitions[method][:styles].keys + [:original]
@@ -31,5 +23,6 @@ namespace :push do
     upload Spree::FeaturedItem, :image
 
   end
+
 
 end
