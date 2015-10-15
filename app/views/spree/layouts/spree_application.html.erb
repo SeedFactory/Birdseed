@@ -3,6 +3,7 @@
   <head>
     <%= javascript_include_tag 'erb_refresh' if Rails.env.development? %>
     <%= render partial: 'spree/shared/head' %>
+    <!-- <%= flash_messages %> -->
   </head>
   <body<%== " class='#{@body_class}'" if @body_class %>>
     <%= render partial: 'spree/shared/google_analytics.js' %>
