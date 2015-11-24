@@ -1,5 +1,5 @@
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
-@import url(http://fonts.googleapis.com/css?family=Raleway:300,400,500,600);
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,500,600);
 /* line 9, /Users/18181818/.rvm/gems/ruby-2.2.2/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/_normalize.scss */
 html {
   font-family: sans-serif;
@@ -4746,7 +4746,8 @@ tbody.collapse.in {
 }
 
 /* line 1, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/mixins/small_caps.sass */
-.checkout-payment-saved-cards-header, .checkout-payment-saved-cards-add, .featured-item-type, .orders-list-headers, .orders-action-column strong, .shop-product-variant-add, form label, table th {
+.checkout-payment-saved-cards-header,
+.checkout-delivery-rates-header, .checkout-payment-saved-cards-add, .featured-item-type, .orders-list-headers, .orders-action-column strong, .shop-product-variant-add, form label, table th {
   font-weight: 500;
   font-size: 12px;
   text-transform: uppercase;
@@ -5151,87 +5152,94 @@ tbody.collapse.in {
   padding-bottom: 100px;
 }
 /* line 20, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
-.checkout form label a, .checkout form label a:hover, .checkout form label :active {
+.checkout form label a, .checkout form label a:hover, .checkout form label a:active {
   color: #4286CA;
 }
 
-/* line 27, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 28, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-address h1,
 .checkout-register h1,
+.checkout-delivery h1,
 .checkout-payment h1 {
   margin: 0 0 30px 0;
 }
 
-/* line 30, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 31, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-address-type {
   margin-bottom: 30px;
 }
 
-/* line 33, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 34, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-address-use-billing-label {
   margin-bottom: 20px;
 }
 
-/* line 36, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 37, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-actions {
   text-align: center;
 }
-/* line 39, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 40, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-actions label, .checkout-actions input {
   display: inline-block;
 }
-/* line 42, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 43, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-actions label {
   margin-right: 20px;
 }
-/* line 45, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 46, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-actions input {
   max-width: 300px;
 }
 @media (max-width: 767px) {
-  /* line 36, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 37, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-actions {
     text-align: left;
   }
-  /* line 51, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 52, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-actions input {
     max-width: none;
   }
-  /* line 54, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 55, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-actions input[type="checkbox"] {
     margin-bottom: 20px;
   }
 }
 
-/* line 57, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 58, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-address-city-state {
   display: table;
   table-layout: fixed;
 }
 
-/* line 61, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 62, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-address-city,
 .checkout-address-state {
   display: table-cell;
 }
 
-/* line 65, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 66, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-address-city {
   width: 100%;
   padding-right: 20px;
 }
 
-/* line 69, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 70, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-address-state {
   min-width: 70px;
 }
 
-/* line 74, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 75, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment h3 {
   margin: 10px 0 20px 0;
 }
 
-/* line 77, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 78, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+.checkout-delivery-rates {
+  border-bottom: 1px solid #DDD;
+  margin-bottom: 30px;
+}
+
+/* line 82, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-expiration-separator:before {
   width: 40px;
   content: "/";
@@ -5244,8 +5252,9 @@ tbody.collapse.in {
   color: #888;
 }
 
-/* line 90, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
-.checkout-payment-saved-cards label {
+/* line 96, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+.checkout-payment-saved-cards label,
+.checkout-delivery-rates label {
   margin-bottom: 0;
   position: relative;
   border-top: 1px solid #DDD;
@@ -5256,81 +5265,114 @@ tbody.collapse.in {
   color: black;
   text-transform: none;
 }
-/* line 101, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
-.checkout-payment-saved-cards input {
+/* line 107, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+.checkout-payment-saved-cards input,
+.checkout-delivery-rates input {
   position: absolute;
   top: 9px;
   left: 15px;
 }
 
-/* line 106, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 112, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-new-card {
   margin-bottom: 30px;
+}
+
+/* line 118, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+.checkout-payment-number.identified.visa + .help-block, .checkout-payment-number.identified.mastercard + .help-block {
+  color: green;
+}
+/* line 122, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+.checkout-payment-number.identified + .help-block, .checkout-payment-number.unknown + .help-block {
+  color: red;
 }
 
 /* line 14, /Users/18181818/.rvm/gems/ruby-2.2.2/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
 .checkout-payment-saved-cards-header:before, .checkout-payment-saved-cards-header:after,
 .checkout-payment-saved-cards-row:before,
-.checkout-payment-saved-cards-row:after {
+.checkout-payment-saved-cards-row:after,
+.checkout-delivery-rates-header:before,
+.checkout-delivery-rates-header:after,
+.checkout-delivery-rate:before,
+.checkout-delivery-rate:after {
   content: " ";
   display: table;
 }
 /* line 19, /Users/18181818/.rvm/gems/ruby-2.2.2/gems/bootstrap-sass-3.3.5.1/assets/stylesheets/bootstrap/mixins/_clearfix.scss */
 .checkout-payment-saved-cards-header:after,
-.checkout-payment-saved-cards-row:after {
+.checkout-payment-saved-cards-row:after,
+.checkout-delivery-rates-header:after,
+.checkout-delivery-rate:after {
   clear: both;
 }
 
-/* line 113, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
-.checkout-payment-saved-cards-header {
+/* line 131, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+.checkout-payment-saved-cards-header,
+.checkout-delivery-rates-header {
   color: #888;
 }
 @media (max-width: 767px) {
-  /* line 117, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 136, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-payment-saved-cards-header .checkout-payment-saved-cards-name,
-  .checkout-payment-saved-cards-header .checkout-payment-saved-cards-expiration {
+  .checkout-payment-saved-cards-header .checkout-payment-saved-cards-expiration,
+  .checkout-payment-saved-cards-header .checkout-delivery-rate-price,
+  .checkout-delivery-rates-header .checkout-payment-saved-cards-name,
+  .checkout-delivery-rates-header .checkout-payment-saved-cards-expiration,
+  .checkout-delivery-rates-header .checkout-delivery-rate-price {
     display: none;
   }
 }
 
-/* line 121, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 141, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-saved-cards-name,
 .checkout-payment-saved-cards-number,
 .checkout-payment-saved-cards-expiration,
-.checkout-payment-saved-cards-add {
+.checkout-payment-saved-cards-add,
+.checkout-delivery-rate-name,
+.checkout-delivery-rate-price {
   padding: 10px 0;
 }
 
-/* line 127, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 149, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-saved-cards-name,
 .checkout-payment-saved-cards-number,
-.checkout-payment-saved-cards-expiration {
+.checkout-payment-saved-cards-expiration,
+.checkout-delivery-rate-name,
+.checkout-delivery-rate-price {
   float: left;
 }
 @media (max-width: 767px) {
-  /* line 127, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 149, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-payment-saved-cards-name,
   .checkout-payment-saved-cards-number,
-  .checkout-payment-saved-cards-expiration {
+  .checkout-payment-saved-cards-expiration,
+  .checkout-delivery-rate-name,
+  .checkout-delivery-rate-price {
     float: none;
   }
 }
-/* line 135, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 159, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 label:hover .checkout-payment-saved-cards-name, label:hover
 .checkout-payment-saved-cards-number, label:hover
-.checkout-payment-saved-cards-expiration {
+.checkout-payment-saved-cards-expiration, label:hover
+.checkout-delivery-rate-name, label:hover
+.checkout-delivery-rate-price {
   background: #FAFAFA;
 }
-/* line 138, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 162, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 input:checked ~ .checkout-payment-saved-cards-name, label:active .checkout-payment-saved-cards-name, input:checked ~
 .checkout-payment-saved-cards-number, label:active
 .checkout-payment-saved-cards-number, input:checked ~
 .checkout-payment-saved-cards-expiration, label:active
-.checkout-payment-saved-cards-expiration {
+.checkout-payment-saved-cards-expiration, input:checked ~
+.checkout-delivery-rate-name, label:active
+.checkout-delivery-rate-name, input:checked ~
+.checkout-delivery-rate-price, label:active
+.checkout-delivery-rate-price {
   background: #F5F5F5;
 }
 
-/* line 141, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 165, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-saved-cards-add {
   width: 100%;
   padding-bottom: 20px;
@@ -5338,121 +5380,145 @@ input:checked ~ .checkout-payment-saved-cards-name, label:active .checkout-payme
   color: #4286CA !important;
   line-height: 22px;
 }
-/* line 148, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 172, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 label:hover .checkout-payment-saved-cards-add {
   background: -webkit-linear-gradient(top, #FAFAFA, rgba(250, 250, 250, 0));
   background: linear-gradient(to bottom, #FAFAFA, rgba(250, 250, 250, 0));
 }
-/* line 151, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 175, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 input:checked ~ .checkout-payment-saved-cards-add, label:active .checkout-payment-saved-cards-add {
   background: -webkit-linear-gradient(top, #F5F5F5, rgba(245, 245, 245, 0));
   background: linear-gradient(to bottom, #F5F5F5, rgba(245, 245, 245, 0));
 }
 
-/* line 154, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 178, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+.checkout-delivery-rate-name,
+.checkout-delivery-rate-price {
+  width: 50%;
+}
+
+/* line 182, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-saved-cards-number {
   width: 35%;
 }
 
-/* line 157, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 185, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-saved-cards-row .checkout-payment-saved-cards-number,
-.checkout-payment-saved-cards-add {
+.checkout-payment-saved-cards-add,
+.checkout-delivery-rate .checkout-delivery-rate-name {
   padding-left: 40px;
 }
 
-/* line 161, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 190, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-saved-cards-name {
   width: 50%;
 }
 
-/* line 164, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 193, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-payment-saved-cards-expiration {
   width: 15%;
 }
 
 @media (max-width: 767px) {
-  /* line 169, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 198, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-payment-saved-cards-name,
   .checkout-payment-saved-cards-number,
   .checkout-payment-saved-cards-expiration {
     width: auto;
   }
 
-  /* line 176, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 205, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-payment-saved-cards-row .checkout-payment-saved-cards-name,
   .checkout-payment-saved-cards-row .checkout-payment-saved-cards-expiration {
     padding-left: 40px;
   }
-  /* line 180, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 209, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-payment-saved-cards-row .checkout-payment-saved-cards-number,
   .checkout-payment-saved-cards-row .checkout-payment-saved-cards-name {
     padding-bottom: 0;
   }
-  /* line 184, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 213, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-payment-saved-cards-row .checkout-payment-saved-cards-name,
   .checkout-payment-saved-cards-row .checkout-payment-saved-cards-expiration {
     padding-top: 0;
   }
-  /* line 188, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 217, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-payment-saved-cards-row .checkout-payment-saved-cards-number {
     font-size: 18px;
   }
-  /* line 191, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 220, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-payment-saved-cards-row .checkout-payment-saved-cards-expiration {
     color: #999;
   }
+
+  /* line 225, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  .checkout-delivery-rate .checkout-delivery-rate-name {
+    padding-bottom: 0;
+    font-size: 18px;
+  }
+  /* line 229, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  .checkout-delivery-rate .checkout-delivery-rate-price {
+    padding-top: 0;
+    padding-left: 40px;
+  }
+
+  /* line 233, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  .checkout-delivery-rate-name,
+  .checkout-delivery-rate-price {
+    width: auto;
+  }
 }
-/* line 194, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 237, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-confirm {
   width: 100%;
   display: table;
 }
-/* line 198, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 241, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-confirm h1 {
   margin: 0;
 }
-/* line 201, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 244, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-confirm h4 {
   margin: 30px 0 10px 0;
 }
 
-/* line 204, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 247, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-confirm-details,
 .checkout-confirm-cart {
   display: table-cell;
 }
 
-/* line 208, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 251, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-confirm-cart {
   width: 100%;
 }
 
-/* line 211, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+/* line 254, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
 .checkout-confirm-details {
   white-space: nowrap;
   padding-right: 5vw;
 }
 
 @media (max-width: 767px) {
-  /* line 217, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 260, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-confirm {
     display: block;
   }
 
-  /* line 220, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 263, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-confirm-details,
   .checkout-confirm-cart {
     display: block;
   }
 
-  /* line 224, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 267, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-confirm-details {
     width: auto;
     white-space: normal;
     padding-right: 0;
   }
 
-  /* line 229, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
+  /* line 272, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/checkout.sass */
   .checkout-confirm-cart {
     margin-top: 30px;
   }
@@ -5970,6 +6036,40 @@ form .help-block {
   border: 0;
   border-radius: 0;
   box-shadow: none;
+}
+
+/* line 1, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/login.sass */
+.login {
+  max-width: 400px;
+  margin: 0 auto 100px;
+}
+/* line 5, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/login.sass */
+.login h1 {
+  margin-bottom: 30px;
+}
+/* line 10, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/login.sass */
+.login .alert input[type="submit"] {
+  width: auto;
+  display: block;
+  padding: 0;
+  background: none;
+  text-shadow: none;
+  color: inherit;
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 600;
+  text-align: left;
+  font-size: inherit;
+}
+/* line 23, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/login.sass */
+.login .alert input[type="submit"]:active {
+  box-shadow: none;
+}
+
+/* line 26, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/login.sass */
+.login-fake-submit {
+  height: 0;
+  margin: 0;
 }
 
 /* line 3, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/order.sass */
@@ -6540,7 +6640,7 @@ form .help-block {
   color: white;
   font-weight: 500;
   font-size: 16px;
-  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.65);
   white-space: normal;
 }
 /* line 45, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/shop.sass */
@@ -6797,32 +6897,4 @@ a:hover, a:focus {
 /* line 41, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/typography.sass */
 form label, table th {
   color: #888;
-}
-
-/* line 1, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/user_sessions.sass */
-.login {
-  max-width: 400px;
-  margin: 0 auto 100px;
-}
-/* line 5, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/user_sessions.sass */
-.login h1 {
-  margin-bottom: 30px;
-}
-/* line 10, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/user_sessions.sass */
-.login .alert input[type="submit"] {
-  width: auto;
-  display: block;
-  padding: 0;
-  background: none;
-  text-shadow: none;
-  color: inherit;
-  text-transform: none;
-  letter-spacing: 0;
-  font-weight: 600;
-  text-align: left;
-  font-size: inherit;
-}
-/* line 23, /Users/18181818/Documents/Projects/Birdseed/code/vendor/assets/stylesheets/spree/frontend/user_sessions.sass */
-.login .alert input[type="submit"]:active {
-  box-shadow: none;
 }
