@@ -55,7 +55,11 @@
     <div class="form-group<%= error_class(source_errors, :number) %>">
       <%= label_tag "payment_source_#{id}_number", 'Card Number' %>
       <%= telephone_field_tag "#{param_prefix}[number]", '', size: 19, maxlength: 19, autocomplete: 'cc-number', class: 'checkout-payment-number' %>
-      <%= error_hint(source_errors, :number) %>
+      <% if source_errors.include?(:number) %>
+        <%= error_hint(source_errors, :number) %>
+      <% else %>
+        <span class="help-block">Visa or Mastercard only</span>
+      <% end %>
     </div>
     <div class="row">
       <div class="col-sm-8 form-group">

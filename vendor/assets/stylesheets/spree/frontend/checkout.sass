@@ -112,6 +112,16 @@
 .checkout-payment-new-card
   margin-bottom: 30px
 
+.checkout-payment-number
+  
+  &.identified.visa, &.identified.mastercard
+    + .help-block
+      color: green
+
+  &.identified, &.unknown
+    + .help-block
+      color: red
+
 .checkout-payment-saved-cards-header,
 .checkout-payment-saved-cards-row,
 .checkout-delivery-rates-header,
