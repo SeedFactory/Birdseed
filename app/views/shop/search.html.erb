@@ -1,3 +1,6 @@
+<% if @query %>
+  <%= fb_track 'Search', search_string: @query %>
+<% end %>
 <%= render layout: 'shop/shop' do %>
   <div class="container-fluid shop-search" data-scroll-target>
     <div class="row">

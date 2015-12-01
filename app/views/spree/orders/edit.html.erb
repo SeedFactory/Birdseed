@@ -6,6 +6,7 @@
         <%= link_to 'Continue Shopping', app_url_helpers.shop_path %>
       </div>
     <% else %>
+      <%= fb_track 'AddToCart', fb_track_params(@order) %>
       <div class="cart-header">
         <h1>Cart</h1>
         <%= link_to 'Checkout', checkout_path %>

@@ -1,5 +1,31 @@
 module ApplicationHelper
 
+  def fb_id
+    '520790081425403'
+  end
+
+  def fb_track_params order
+    {
+      value: order.total,
+      content_type: 'product',
+      content_ids: order.line_items.map{|item| item.variant.sku},
+      num_items: order.quantity
+    }
+  end
+
+  def fb_track event, params = {}
+    js_code = "fbq('track', '#{event}', #{params.to_json});"
+    js_track = content_tag(:script, js_code.html_safe)
+    if params[:content_ids]
+      params[:content_ids] = params[:content_ids].join(',')
+    end
+    image_params = { id: fb_id, ev: event, cd: params }.to_param
+    image_url = "https://www.facebook.com/tr?#{image_params}".html_safe
+    image_options = { alt: 'Facebook Tracking Pixel', size: '1x1', style: 'display:none' }
+    img_track = content_tag(:noscript, image_tag(image_url, image_options))
+    js_track + img_track
+  end
+
   def products_cache_key products
     [ products.maximum(:updated_at) || Time.now,
       params[:page],

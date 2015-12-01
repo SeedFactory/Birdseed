@@ -1,5 +1,6 @@
-<% content_for :google_analytics do %>
-  <% if order_just_completed?(@order) %>
+<% if order_just_completed?(@order) %>
+  <%= fb_track 'Purchase', fb_track_params(@order).merge(order_id: @order.number, currency: 'USD') %>
+  <% content_for :google_analytics do %>
     <%= render partial: 'spree/shared/google_purchase.js', locals: { order: @order } %>
   <% end %>
 <% end %>
