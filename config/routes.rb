@@ -21,6 +21,9 @@ Rails.application.routes.draw do
   Spree::Core::Engine.routes.append do
     namespace :admin do
       resources :featured_items
+      resources :orders, only: [] do
+        get :packing_slip, on: :member
+      end
     end
   end
 

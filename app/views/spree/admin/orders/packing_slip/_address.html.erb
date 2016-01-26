@@ -1,0 +1,40 @@
+<table>
+  <tr>
+    <th>First Name</th>
+    <td><%= address.first_name %></td>
+  </tr>
+  <tr>
+    <th>Last Name</th>
+    <td><%= address.last_name %></td>
+  </tr>
+  <tr>
+    <th>Street Address</th>
+    <td><%= address.address1 %></td>
+  </tr>
+  <% if address.address2.present? %>
+    <tr>
+      <th>Address (cont'd)</th>
+      <td><%= address.address2 %></td>
+    </tr>
+  <% end %>
+  <tr>
+    <th>City</th>
+    <td><%= address.city %></td>
+  </tr>
+  <tr>
+    <th>Zipcode</th>
+    <td><%= address.zipcode %></td>
+  </tr>
+  <tr>
+    <th>State</th>
+    <td><%= address.state %></td>
+  </tr>
+  <tr>
+    <th>Country</th>
+    <td><%= address.country %></td>
+  </tr>
+  <tr>
+    <th>Phone</th>
+    <td><%= address.phone %></td>
+  </tr>
+</table>

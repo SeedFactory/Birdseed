@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Order <%= @order.number %></title>
+  <style>
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  }
+  tr {
+    vertical-align: top;
+  }
+  th, td {
+    padding: 0.3rem;
+  }
+  th {
+    text-align: left;
+  }
+  </style>
+</head>
+<body>
+  <h1>Order <%= @order.number %></h1>
+  <table>
+    <tr>
+      <td>
+        <h2>Billing Address</h2>
+        <%= render 'spree/admin/orders/packing_slip/address',
+          address: @order.billing_address %>
+      </td>
+      <td>
+        <h2>Shipping Address</h2>
+        <% if @order.shipping_eq_billing_address? %>
+          Same as billing
+        <% else %>
+          <%= render 'spree/admin/orders/packing_slip/address',
+            address: @order.shipping_address %>
+        <% end %>
+      </td>
+    </tr>
+  </table>
+  <h2>Items</h2>
+  <table>
+    <tr>
+      <th>UPC</th>
+      <th>Brand</th>
+      <th>Name</th>
+      <th>Size</th>
+      <th>Quantity</th>
+    </tr>
+    <% @order.line_items.each do |line_item| %>
+      <tr>
+        <td><%= line_item.variant.sku %></td>
+        <td><%= line_item.product.brand.name %></td>
+        <td><%= line_item.variant.name %></td>
+        <td><%= option_values line_item.variant %></td>
+        <td><%= line_item.quantity %></td>
+      </tr>
+    <% end %>
+  </table>
+</body>
+</html>
