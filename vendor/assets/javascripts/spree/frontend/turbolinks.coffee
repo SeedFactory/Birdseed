@@ -370,7 +370,7 @@ class ComponentUrl
   hasNoHash: -> @hash.length is 0
 
   crossOrigin: ->
-    @origin isnt (new ComponentUrl).origin
+    false
 
   formatForXHR: (options = {}) ->
     (if options.cache then @ else @withAntiCacheParam()).withoutHashForIE10compatibility()
@@ -452,7 +452,8 @@ class Scroll
 class Submit
 
   @handle: (event) ->
-    new Submit event
+    if browserSupportsTurbolinks
+      new Submit event
 
   constructor: (@event) ->
     @event.preventDefault()
@@ -486,7 +487,7 @@ class Click
   constructor: (@event) ->
     return if @event.defaultPrevented
     if $(@event.target).is(':submit')
-      return new Submit event
+      return new Submit @event
     @_extractLink()
     if @_validForTurbolinks()
       unless pageChangePrevented(@link.absolute)
