@@ -11,6 +11,9 @@
 </div>
 <div data-scroll-target>
   <%= render 'nav', { states: @order.checkout_steps, index: @order.checkout_steps.index(@order.state) } %>
+  <div class="alert-container container-fluid">
+    <%= flash_messages %>
+  </div>
   <div class="checkout container-fluid">
     <%= form_for @order, url: app_url_helpers.update_checkout_path(@order.state), html: { class: 'checkout-form' } do |form| %>
       <%= form.hidden_field :state_lock_version %>
